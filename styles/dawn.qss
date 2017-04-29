@@ -1,0 +1,86 @@
+/*
+* Name: Dawn style
+*
+* Author: QingChenW
+*
+* Date: 2017/4/30
+*/
+
+QMainWindow {
+//     background-image: url(:/images/background.png);
+     background-color: rgba(52, 152, 219, 255);
+     background-attachment: fixed;
+}
+
+QToolTip{
+        border: 1px solid rgb(111, 156, 207);
+        background: white;
+        color: rgb(51, 51, 51);
+}
+
+QMenu {
+        border: 1px solid rgb(111, 156, 207);
+        background: rgb(232, 241, 250);
+}
+QMenu::item {
+        height: 22px;
+        padding: 0px 25px 0px 20px;
+}
+QMenu::item:enabled {
+        color: rgb(84, 84, 84);
+}
+QMenu::item:!enabled {
+        color: rgb(155, 155, 155);
+}
+QMenu::item:enabled:selected {
+        color: rgb(2, 65, 132);
+        background: rgba(255, 255, 255, 200);
+}
+QMenu::separator {
+        height: 1px;
+        background: rgb(111, 156, 207);
+}
+QMenu::indicator {
+        width: 13px;
+        height: 13px;
+}
+QMenu::icon {
+        padding-left: 2px;
+        padding-right: 2px;
+}
+
+QStatusBar {
+        background: rgb(187, 212, 238);
+        border: 1px solid rgb(111, 156, 207);
+        border-left: none;
+        border-right: none;
+        border-bottom: none;
+}
+QStatusBar::item {
+    border: none;
+    border-right: 1px solid rgb(111, 156, 207);
+}
+
+QPushButton {
+     background-color: rgba(100, 225, 100, 255);
+     border-style: outset;
+     border-width: 1px;
+     border-radius: 1px;
+     border-color: rgba(62, 64, 66, 10);
+     font: bold 14px;
+         color:rgba(0, 0, 0, 100);
+     padding: 6px;
+}
+
+QPushButton:hover {
+        background-color:rgba(100, 255, 100, 100);
+        border-color: rgba(255, 225, 255, 200);
+        color:rgba(0, 0, 0, 200);
+}
+
+QPushButton:pressed {
+     background-color:rgba(100,255,100, 200);
+         border-color: rgba(255, 225, 255, 30);
+     border-style: inset;
+        color:rgba(0, 0, 0, 100);
+}
