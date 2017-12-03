@@ -2,9 +2,12 @@
 #define TITLEBAR_H
 
 #include <QWidget>
-
-class QLabel;
-class QPushButton;
+#include <QLabel>
+#include <QPushButton>
+#include <QHBoxLayout>
+#include <QEvent>
+#include <QMouseEvent>
+#include <QApplication>
 
 class TitleBar : public QWidget
 {

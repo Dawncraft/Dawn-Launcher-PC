@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000
 
 SOURCES += main.cpp\
-        MainWindow.cpp
+        MainWindow.cpp \
+    TitleBar.cpp
 
-HEADERS  += MainWindow.h
+HEADERS  += MainWindow.h \
+    titlebar.h
 
 FORMS    += MainWindow.ui
 
@@ -30,6 +32,6 @@ VERSION = 0.0.0.1
 RC_ICONS = icon.ico
 RC_LANG = 0x0004
 QMAKE_TARGET_PRODUCT = "Dawn Game Platform"
-QMAKE_TARGET_DESCRIPTION = "A game platform."
+QMAKE_TARGET_DESCRIPTION = "Dawn Game Platform"
 QMAKE_TARGET_COMPANY = "Dawncraft Studio"
-QMAKE_TARGET_COPYRIGHT = "Copyright 2002-2017 Dawncraft Studio. All rights reserved."
+QMAKE_TARGET_COPYRIGHT = "Copyright 2002-2017 Dawncraft Studio."

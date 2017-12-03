@@ -1,5 +1,6 @@
 #include <QLabel>
 #include <QFile>
+#include "TitleBar.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -11,10 +12,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     this->setWindowFlags(Qt::FramelessWindowHint | windowFlags());
 
-    /*TitleBar *pTitleBar = new TitleBar(this);
+    TitleBar *pTitleBar = new TitleBar(this);
     this->installEventFilter(pTitleBar);
 
-    ui->horizontalLayout->addWidget(pTitleBar);*/
+    ui->horizontalLayout->addWidget(pTitleBar);
     ui->horizontalLayout->addStretch();
     ui->horizontalLayout->setSpacing(0);
     ui->horizontalLayout->setContentsMargins(0, 0, 0, 0);

@@ -1,0 +1,16 @@
+# exclude all
+/*
+
+# include sourcecode
+!src/
+/src/*.pro.user
+/src/*.pro.user.*
+!doc/
+
+# include markdowns
+!LICENSE
+!README.md
+
+# include git important files
+!.gitmodules
+!.gitignore
