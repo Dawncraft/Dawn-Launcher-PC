@@ -1,38 +1,22 @@
 #include <QLabel>
 #include <QFile>
-#include "TitleBar.h"
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    QMainWindow(parent)
 {
-    ui->setupUi(this);
+    resize(1000, 540);
+    setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+    setWindowIcon(QIcon(":/logo"));
+    setWindowTitle("曙光游戏平台");
 
-    this->setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+    titleBar = new TitleBar(this);
+    installEventFilter(titleBar);
 
-    TitleBar *pTitleBar = new TitleBar(this);
-    this->installEventFilter(pTitleBar);
 
-    ui->horizontalLayout->addWidget(pTitleBar);
-    ui->horizontalLayout->addStretch();
-    ui->horizontalLayout->setSpacing(0);
-    ui->horizontalLayout->setContentsMargins(0, 0, 0, 0);
-
-    ui->statusBar->showMessage("Welcome to use Dawn Launcher!", 6000);
-    QLabel *permanent = new QLabel(this);
-    permanent->setFrameStyle(QFrame::Box | QFrame::Sunken);
-    permanent->setText("Done");
-    ui->statusBar->addPermanentWidget(permanent);
-
-    QFile file(":/styles/dawn.qss");
-    file.open(QFile::ReadOnly);
-    QString styleSheet = file.readAll();
-    qApp->setStyleSheet(styleSheet);
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete this;
 }

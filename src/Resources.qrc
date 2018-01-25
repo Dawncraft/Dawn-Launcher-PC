@@ -4,5 +4,12 @@
         <file>images/install.jpg</file>
         <file>images/splash.png</file>
         <file>styles/dawn.qss</file>
+        <file>images/titlebar/close.png</file>
+        <file>images/titlebar/close_hover.png</file>
+        <file>images/titlebar/close_pressed.png</file>
+        <file>images/titlebar/min.png</file>
+        <file>images/titlebar/min_hover.png</file>
+        <file>images/titlebar/min_pressed.png</file>
+        <file>icon.ico</file>
     </qresource>
 </RCC>

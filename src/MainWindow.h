@@ -2,10 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-namespace Ui {
-class MainWindow;
-}
+#include "TitleBar.h"
+#include "Setting.h"
 
 class MainWindow : public QMainWindow
 {
@@ -16,7 +14,7 @@ public:
     ~MainWindow();
 
 private:
-    Ui::MainWindow *ui;
+    TitleBar *titleBar;
 };
 
 #endif // MAINWINDOW_H

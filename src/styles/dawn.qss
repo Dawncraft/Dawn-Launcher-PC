@@ -7,9 +7,13 @@
 */
 
 QMainWindow {
-//     background-image: url(:/images/background.png);
+     background-image: url(:/images/background.png);
      background-color: rgba(52, 152, 219, 255);
      background-attachment: fixed;
+}
+
+TitleBar {
+     background-color: rgb(50, 50, 50);
 }
 
 QToolTip{
@@ -62,25 +66,65 @@ QStatusBar::item {
 }
 
 QPushButton {
-     background-color: rgba(100, 225, 100, 255);
-     border-style: outset;
-     border-width: 1px;
-     border-radius: 1px;
-     border-color: rgba(62, 64, 66, 10);
-     font: bold 14px;
-         color:rgba(0, 0, 0, 100);
-     padding: 6px;
+    font: bold 14px;
+    color:rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 255);
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 1px;
+    border-color: rgb(16, 33, 99);
+    padding: 2px;
 }
 
 QPushButton:hover {
-        background-color:rgba(100, 255, 100, 100);
-        border-color: rgba(255, 225, 255, 200);
-        color:rgba(0, 0, 0, 200);
+    color:rgba(0, 0, 0, 200);
+    background-color:rgba(200, 200, 200, 180);
+    border-color: rgba(255, 225, 255, 180);
 }
 
 QPushButton:pressed {
-     background-color:rgba(100,255,100, 200);
-         border-color: rgba(255, 225, 255, 30);
-     border-style: inset;
-        color:rgba(0, 0, 0, 100);
+    color: rgb(0, 0, 0);
+    background-color: rgba(100, 255, 100, 100);
+    border-style: inset;
+    border-color: rgba(235, 235, 235, 100);
+}
+
+QLabel#titleLabel {
+    color: rgb(255, 255, 255);
+}
+
+QPushButton#minimizeButton {
+    height: 30px;
+    background-image: url(:/images/titlebar/min.png);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
+
+QPushButton#minimizeButton:hover {
+    background-image: url(:/images/titlebar/min_hover.png);
+    background-color: rgba(79, 79, 79, 100);
+}
+
+QPushButton#minimizeButton:pressed {
+    background-image: url(:/images/titlebar/min_pressed.png);
+    background-color: rgba(142, 142, 142, 200);
+}
+
+QPushButton#closeButton {
+    height: 30px;
+    background-image: url(:/images/titlebar/close.png);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
+
+QPushButton#closeButton:hover {
+    background-image: url(:/images/titlebar/close_hover.png);
+    background-color: rgb(232, 17, 35);
+}
+
+QPushButton#closeButton:pressed {
+    background-image: url(:/images/titlebar/close_pressed.png);
+    background-color: rgba(232, 17, 35, 150);
 }

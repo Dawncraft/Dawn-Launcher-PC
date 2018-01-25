@@ -18,12 +18,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         MainWindow.cpp \
-    TitleBar.cpp
+    TitleBar.cpp \
+    Setting.cpp
 
 HEADERS  += MainWindow.h \
-    titlebar.h
+    TitleBar.h \
+    Setting.h
 
-FORMS    += MainWindow.ui
+FORMS    +=
 
 RESOURCES += Resources.qrc
 

@@ -18,17 +18,17 @@ public:
     ~TitleBar();
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event);
     virtual bool eventFilter(QObject *obj, QEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event);
 
 private slots:
     void onClicked();
 
 private:
-    QLabel *m_pIconLabel;
-    QLabel *m_pTitleLabel;
-    QPushButton *m_pMinimizeButton;
-    QPushButton *m_pCloseButton;
+    QLabel *labelIcon;
+    QLabel *labelTitle;
+    QPushButton *buttonMinimize;
+    QPushButton *buttonClose;
 };
 
 #endif // TITLEBAR_H
