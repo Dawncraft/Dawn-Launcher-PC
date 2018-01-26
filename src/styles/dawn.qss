@@ -89,6 +89,12 @@ QPushButton:pressed {
     border-color: rgba(235, 235, 235, 100);
 }
 
+QToolButton {
+    color: rgb(0, 160, 230);
+    background-color: rgb(68, 69, 73);
+    border: none;
+}
+
 QLabel#titleLabel {
     color: rgb(255, 255, 255);
 }
@@ -127,4 +133,21 @@ QPushButton#closeButton:hover {
 QPushButton#closeButton:pressed {
     background-image: url(:/images/titlebar/close_pressed.png);
     background-color: rgba(232, 17, 35, 150);
+}
+
+QPushButton#navTabButton {
+    color: rgb(205, 205, 205);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
+
+QPushButton#navTabButton:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(155, 155, 155, 150);
+}
+
+QPushButton#navTabButton:checked {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
 }

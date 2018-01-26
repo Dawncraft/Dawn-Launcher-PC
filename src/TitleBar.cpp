@@ -5,8 +5,7 @@
 #include <qt_windows.h>
 #endif
 
-TitleBar::TitleBar(QWidget *parent)
-    : QWidget(parent)
+TitleBar::TitleBar(QWidget *parent) : QWidget(parent)
 {
     setFixedWidth(parent->width());
     setFixedHeight(30);
@@ -44,8 +43,6 @@ TitleBar::TitleBar(QWidget *parent)
     buttonClose->setToolTip("Close");
     connect(buttonClose, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
     layout->addWidget(buttonClose, 0, Qt::AlignRight | Qt::AlignTop);
-
-    setLayout(layout);
 }
 
 TitleBar::~TitleBar()

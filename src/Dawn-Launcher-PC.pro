@@ -19,11 +19,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         MainWindow.cpp \
     TitleBar.cpp \
-    Setting.cpp
+    Setting.cpp \
+    NavigationBar.cpp \
+    TrayMenu.cpp
 
 HEADERS  += MainWindow.h \
     TitleBar.h \
-    Setting.h
+    Setting.h \
+    NavigationBar.h \
+    TrayMenu.h
 
 FORMS    +=
 
