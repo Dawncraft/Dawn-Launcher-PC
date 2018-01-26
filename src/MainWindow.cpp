@@ -6,26 +6,42 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     setWindowIcon(QIcon(":/icon"));
     setWindowTitle("曙光游戏平台");
+    setCentralWidget(new QWidget(parent));
+    setObjectName("mainWindow");
 
-    QWidget* widget = new QWidget(parent);
-    widget->setFixedWidth(this->width());
-    widget->setFixedHeight(this->height());
-
-    QVBoxLayout *layout = new QVBoxLayout(widget);
+    QVBoxLayout *layout = new QVBoxLayout(centralWidget());
     layout->setMargin(0);
+    layout->setSpacing(0);
 
     titleBar = new TitleBar(this);
     installEventFilter(titleBar);
     layout->addWidget(titleBar);
 
-    layout->addSpacing(2);
-
     navigationBar = new NavigationBar(this);
+    navigationBar->setContentsMargins(5, 0, 5, 0);
     layout->addWidget(navigationBar);
+    connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(setStackedWidgetIndex(int)));
 
-    layout->addStretch();
+    stackedWidget = new QStackedWidget(this);
+    stackedWidget->setContentsMargins(5, 0, 5, 0);
+    stackedWidget->setFixedWidth(this->width());
+    stackedWidget->setFixedHeight(this->height() - 100);
+    layout->addWidget(stackedWidget);
 
-    setCentralWidget(widget);
+    HomePage *homePage = new HomePage(stackedWidget);
+    stackedWidget->addWidget(homePage);
+
+    NewsPage *newsPage = new NewsPage(stackedWidget);
+    stackedWidget->addWidget(newsPage);
+
+    HomePage *bbsPage = new HomePage(stackedWidget);
+    stackedWidget->addWidget(bbsPage);
+
+    HomePage *gamesPage = new HomePage(stackedWidget);
+    stackedWidget->addWidget(gamesPage);
+
+    HomePage *friendsPage = new HomePage(stackedWidget);
+    stackedWidget->addWidget(friendsPage);
 
     iconTray = new QSystemTrayIcon(this);
     iconTray->setIcon(this->windowIcon());
@@ -38,13 +54,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     //connect(menuTray, SIGNAL(showWindow()), this, SLOT(showWindow()));
 
     iconTray->show();
-
-    iconTray->showMessage("欢迎使用曙光游戏平台", "进入官网了解更多!");
 }
 
 MainWindow::~MainWindow()
 {
     delete this;
+}
+
+void MainWindow::setStackedWidgetIndex(int index)
+{
+    stackedWidget->setCurrentIndex(index);
 }
 
 void MainWindow::onActivated(QSystemTrayIcon::ActivationReason reason)

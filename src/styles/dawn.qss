@@ -7,51 +7,59 @@
 */
 
 QMainWindow {
-     background-image: url(:/images/background.png);
-     background-color: rgba(52, 152, 219, 255);
-     background-attachment: fixed;
+    background-color: rgb(41, 128, 185);
+}
+
+QMainWindow#mainWindow {
+    background-image: url(:/images/background.png);
+    background-attachment: fixed;
 }
 
 TitleBar {
-     background-color: rgb(50, 50, 50);
+    background-color: rgb(41, 128, 185);
+}
+
+NavigationBar {
+    background-color: rgb(41, 128, 185);
 }
 
 QToolTip{
-        border: 1px solid rgb(111, 156, 207);
-        background: white;
-        color: rgb(51, 51, 51);
+    border: 1px solid rgb(111, 156, 207);
+    background: white;
+    color: rgb(51, 51, 51);
 }
 
 QMenu {
-        border: 1px solid rgb(111, 156, 207);
-        background: rgb(232, 241, 250);
-}
-QMenu::item {
-        height: 22px;
-        padding: 0px 25px 0px 20px;
-}
-QMenu::item:enabled {
-        color: rgb(84, 84, 84);
-}
-QMenu::item:!enabled {
-        color: rgb(155, 155, 155);
-}
-QMenu::item:enabled:selected {
-        color: rgb(2, 65, 132);
-        background: rgba(255, 255, 255, 200);
-}
-QMenu::separator {
-        height: 1px;
-        background: rgb(111, 156, 207);
-}
-QMenu::indicator {
-        width: 13px;
-        height: 13px;
+    background: rgb(41, 128, 185);
+    border: 1px solid rgb(44, 62, 80);
 }
 QMenu::icon {
-        padding-left: 2px;
-        padding-right: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
+QMenu::item {
+    height: 22px;
+    padding: 0px 25px 0px 20px;
+}
+QMenu::item:enabled {
+    color: rgb(236, 240, 241);
+}
+QMenu::item:!enabled {
+    color: rgb(149, 165, 166);
+}
+QMenu::item:enabled:selected {
+    color: rgb(189, 195, 199);
+    background: rgba(52, 152, 219, 200);
+}
+QMenu::separator {
+    height: 2px;
+    background: rgb(127, 140, 141);
+}
+QMenu::indicator {
+    width: 13px;
+    height: 13px;
+}
+
 
 QStatusBar {
         background: rgb(187, 212, 238);
@@ -66,7 +74,6 @@ QStatusBar::item {
 }
 
 QPushButton {
-    font: bold 14px;
     color:rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 255);
     border-style: outset;
@@ -90,8 +97,8 @@ QPushButton:pressed {
 }
 
 QToolButton {
-    color: rgb(0, 160, 230);
-    background-color: rgb(68, 69, 73);
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
     border: none;
 }
 
@@ -136,6 +143,8 @@ QPushButton#closeButton:pressed {
 }
 
 QPushButton#navTabButton {
+    font-size: 24px;
+    font-weight: bold;
     color: rgb(205, 205, 205);
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
@@ -144,10 +153,11 @@ QPushButton#navTabButton {
 
 QPushButton#navTabButton:hover {
     color: rgb(255, 255, 255);
-    background-color: rgba(155, 155, 155, 150);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 QPushButton#navTabButton:checked {
-    color: rgb(255, 255, 255);
+    font-size: 28px;
+    color: rgb(230, 230, 230);
     background-color: rgba(0, 0, 0, 0);
 }

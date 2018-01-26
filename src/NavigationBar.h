@@ -3,8 +3,11 @@
 
 #include <QWidget>
 #include <QHBoxLayout>
+#include <QButtonGroup>
 #include <QToolButton>
 #include <QPushButton>
+#include <QMenu>
+#include <QLabel>
 
 class NavigationBar : public QWidget
 {
@@ -14,16 +17,16 @@ public:
     explicit NavigationBar(QWidget *parent = 0);
     ~NavigationBar();
 
+signals:
+    void changeStackedWidgetIndex(int index);
+
 private slots:
     void onClicked();
+    void onTabClicked(QAbstractButton *button);
 
 private:
     QToolButton *buttonBrand;
-    QPushButton *buttonHome;
-    QPushButton *buttonNews;
-    QPushButton *buttonBBS;
-    QPushButton *buttonGames;
-    QPushButton *buttonFriends;
+    QButtonGroup *buttonGroup;
 };
 
 #endif // NAVIGATIONBAR_H

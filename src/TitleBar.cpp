@@ -9,6 +9,7 @@ TitleBar::TitleBar(QWidget *parent) : QWidget(parent)
 {
     setFixedWidth(parent->width());
     setFixedHeight(30);
+
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
