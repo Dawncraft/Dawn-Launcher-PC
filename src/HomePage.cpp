@@ -5,8 +5,24 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent)
     setFixedWidth(parent->width());
     setFixedHeight(parent->height());
 
-    QLabel *label = new QLabel(this);
-    label->setText("这是主页!!!");
+    QHBoxLayout *layout = new QHBoxLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
+
+    QString games[] = {"Minecraft", "Ourfirstclass"};
+
+    switchBar = new SwitchBar(this, games);
+    layout->addWidget(switchBar);
+
+    stackedWidget = new QStackedWidget(this);
+    stackedWidget->setContentsMargins(5, 5, 5, 5);
+    stackedWidget->setFixedWidth(this->width() - 100);
+    stackedWidget->setFixedHeight(this->height());
+    layout->addWidget(stackedWidget);
+
+    GamePage *gamePage = new GamePage(this);
+    gamePage->setGameName("Minecraft");
+    stackedWidget->addWidget(gamePage);
 }
 
 HomePage::~HomePage()

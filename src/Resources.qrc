@@ -11,5 +11,9 @@
         <file>images/titlebar/min_hover.png</file>
         <file>images/titlebar/min_pressed.png</file>
         <file>icon.ico</file>
+        <file>images/Minecraft/icon.ico</file>
+        <file>images/Ourfirstclass/icon.ico</file>
+        <file>images/Ourfirstclass/icon.png</file>
+        <file>images/Ourfirstclass/icon2.ico</file>
     </qresource>
 </RCC>

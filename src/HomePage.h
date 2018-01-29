@@ -2,7 +2,10 @@
 #define HOMEPAGE_H
 
 #include <QWidget>
-#include <QLabel>
+#include <QHBoxLayout>
+#include <QStackedWidget>
+#include "SwitchBar.h"
+#include "GamePage.h"
 
 class HomePage : public QWidget
 {
@@ -15,6 +18,10 @@ public:
 signals:
 
 public slots:
+
+private:
+    SwitchBar *switchBar;
+    QStackedWidget *stackedWidget;
 };
 
 #endif // HOMEPAGE_H

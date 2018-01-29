@@ -28,19 +28,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     stackedWidget->setFixedHeight(this->height() - 100);
     layout->addWidget(stackedWidget);
 
-    HomePage *homePage = new HomePage(stackedWidget);
+    HomePage *homePage = new HomePage(this);
     stackedWidget->addWidget(homePage);
 
-    NewsPage *newsPage = new NewsPage(stackedWidget);
+    NewsPage *newsPage = new NewsPage(this);
     stackedWidget->addWidget(newsPage);
 
-    HomePage *bbsPage = new HomePage(stackedWidget);
+    HomePage *bbsPage = new HomePage(this);
     stackedWidget->addWidget(bbsPage);
 
-    HomePage *gamesPage = new HomePage(stackedWidget);
+    HomePage *gamesPage = new HomePage(this);
     stackedWidget->addWidget(gamesPage);
 
-    HomePage *friendsPage = new HomePage(stackedWidget);
+    HomePage *friendsPage = new HomePage(this);
     stackedWidget->addWidget(friendsPage);
 
     iconTray = new QSystemTrayIcon(this);
@@ -58,7 +58,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
 MainWindow::~MainWindow()
 {
-    delete this;
+
 }
 
 void MainWindow::setStackedWidgetIndex(int index)

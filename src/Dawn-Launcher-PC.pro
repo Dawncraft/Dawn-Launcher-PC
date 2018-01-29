@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     NavigationBar.cpp \
     TrayMenu.cpp \
     HomePage.cpp \
-    NewsPage.cpp
+    NewsPage.cpp \
+    SwitchBar.cpp \
+    GamePage.cpp
 
 HEADERS  += MainWindow.h \
     TitleBar.h \
@@ -31,7 +33,9 @@ HEADERS  += MainWindow.h \
     NavigationBar.h \
     TrayMenu.h \
     HomePage.h \
-    NewsPage.h
+    NewsPage.h \
+    SwitchBar.h \
+    GamePage.h
 
 FORMS    +=
 

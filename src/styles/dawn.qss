@@ -161,3 +161,23 @@ QPushButton#navTabButton:checked {
     color: rgb(230, 230, 230);
     background-color: rgba(0, 0, 0, 0);
 }
+
+QPushButton#swiTabButton {
+    color: rgb(205, 205, 205);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
+
+QPushButton#swiTabButton:hover {
+    color: rgb(150, 150, 150);
+    background-color: rgba(200, 200, 200, 150);
+}
+
+QPushButton#swiTabButton:checked {
+    font-size: 28px;
+    color: rgb(50, 50, 50);
+    background-color: rgba(200, 200, 200, 50);
+}
+
+
