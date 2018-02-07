@@ -75,7 +75,7 @@ QStatusBar::item {
 
 QPushButton {
     color:rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 255);
+    background-color: rgba(0, 160, 230, 255);
     border-style: outset;
     border-width: 1px;
     border-radius: 1px;
@@ -100,6 +100,17 @@ QToolButton {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
     border: none;
+}
+
+QProgressBar{
+    border: none;
+    color: white;
+    text-align: center;
+    background: rgb(68, 69, 73);
+}
+QProgressBar::chunk {
+    border: none;
+    background: rgb(0, 160, 230);
 }
 
 QLabel#titleLabel {

@@ -20,8 +20,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent)
     stackedWidget->setFixedHeight(this->height());
     layout->addWidget(stackedWidget);
 
-    GamePage *gamePage = new GamePage(this);
-    gamePage->setGameName("Minecraft");
+    GamePage *gamePage = new GamePage(this, "Minecraft");
     stackedWidget->addWidget(gamePage);
 }
 

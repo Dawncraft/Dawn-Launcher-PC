@@ -40,6 +40,15 @@ NavigationBar::NavigationBar(QWidget *parent) : QWidget(parent)
     buttonGroup->addButton(buttonHome, 0);
     layout->addWidget(buttonHome);
 
+    QPushButton *buttonStore = new QPushButton(this);
+    buttonStore->setObjectName("navTabButton");
+    buttonStore->setFixedWidth(100);
+    buttonStore->setFixedHeight(this->height());
+    buttonStore->setCheckable(true);
+    buttonStore->setText("游戏库");
+    buttonGroup->addButton(buttonStore, 3);
+    layout->addWidget(buttonStore);
+
     QPushButton *buttonNews = new QPushButton(this);
     buttonNews->setObjectName("navTabButton");
     buttonNews->setFixedWidth(100);
@@ -58,23 +67,14 @@ NavigationBar::NavigationBar(QWidget *parent) : QWidget(parent)
     buttonGroup->addButton(buttonBBS, 2);
     layout->addWidget(buttonBBS);
 
-    QPushButton *buttonGames = new QPushButton(this);
-    buttonGames->setObjectName("navTabButton");
-    buttonGames->setFixedWidth(100);
-    buttonGames->setFixedHeight(this->height());
-    buttonGames->setCheckable(true);
-    buttonGames->setText("游戏库");
-    buttonGroup->addButton(buttonGames, 3);
-    layout->addWidget(buttonGames);
-
-    QPushButton *buttonFriends = new QPushButton(this);
-    buttonFriends->setObjectName("navTabButton");
-    buttonFriends->setFixedWidth(100);
-    buttonFriends->setFixedHeight(this->height());
-    buttonFriends->setCheckable(true);
-    buttonFriends->setText("好友");
-    buttonGroup->addButton(buttonFriends, 4);
-    layout->addWidget(buttonFriends);
+    QPushButton *buttonChat = new QPushButton(this);
+    buttonChat->setObjectName("navTabButton");
+    buttonChat->setFixedWidth(100);
+    buttonChat->setFixedHeight(this->height());
+    buttonChat->setCheckable(true);
+    buttonChat->setText("好友");
+    buttonGroup->addButton(buttonChat, 4);
+    layout->addWidget(buttonChat);
 
     layout->addStretch();
 

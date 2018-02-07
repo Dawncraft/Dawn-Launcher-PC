@@ -31,17 +31,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     HomePage *homePage = new HomePage(this);
     stackedWidget->addWidget(homePage);
 
+    StorePage *storePage = new StorePage(this);
+    stackedWidget->addWidget(storePage);
+
     NewsPage *newsPage = new NewsPage(this);
     stackedWidget->addWidget(newsPage);
 
-    HomePage *bbsPage = new HomePage(this);
+    BBSPage *bbsPage = new BBSPage(this);
     stackedWidget->addWidget(bbsPage);
 
-    HomePage *gamesPage = new HomePage(this);
-    stackedWidget->addWidget(gamesPage);
-
-    HomePage *friendsPage = new HomePage(this);
-    stackedWidget->addWidget(friendsPage);
+    ChatPage *chatPage = new ChatPage(this);
+    stackedWidget->addWidget(chatPage);
 
     iconTray = new QSystemTrayIcon(this);
     iconTray->setIcon(this->windowIcon());

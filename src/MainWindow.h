@@ -7,7 +7,10 @@
 #include "TitleBar.h"
 #include "NavigationBar.h"
 #include "HomePage.h"
+#include "StorePage.h"
 #include "NewsPage.h"
+#include "BBSPage.h"
+#include "ChatPage.h"
 #include "TrayMenu.h"
 
 class MainWindow : public QMainWindow

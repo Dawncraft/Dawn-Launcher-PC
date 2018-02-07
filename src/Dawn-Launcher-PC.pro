@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +25,10 @@ SOURCES += main.cpp\
     HomePage.cpp \
     NewsPage.cpp \
     SwitchBar.cpp \
-    GamePage.cpp
+    GamePage.cpp \
+    BBSPage.cpp \
+    StorePage.cpp \
+    ChatPage.cpp
 
 HEADERS  += MainWindow.h \
     TitleBar.h \
@@ -35,7 +38,10 @@ HEADERS  += MainWindow.h \
     HomePage.h \
     NewsPage.h \
     SwitchBar.h \
-    GamePage.h
+    GamePage.h \
+    BBSPage.h \
+    StorePage.h \
+    ChatPage.h
 
 FORMS    +=
 

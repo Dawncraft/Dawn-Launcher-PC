@@ -13,7 +13,8 @@
         <file>icon.ico</file>
         <file>images/Minecraft/icon.ico</file>
         <file>images/Ourfirstclass/icon.ico</file>
-        <file>images/Ourfirstclass/icon.png</file>
         <file>images/Ourfirstclass/icon2.ico</file>
+        <file>images/Minecraft/brand.png</file>
+        <file>images/Ourfirstclass/brand.png</file>
     </qresource>
 </RCC>
