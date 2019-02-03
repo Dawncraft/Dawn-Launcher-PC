@@ -15,8 +15,7 @@ int main(int argc, char *argv[])
 
     QFile file(":/styles/dawn.qss");
     file.open(QFile::ReadOnly);
-    QString styleSheet = file.readAll();
-    qApp->setStyleSheet(styleSheet);
+    qApp->setStyleSheet(file.readAll());
 
     QElapsedTimer timer;
     timer.start();
