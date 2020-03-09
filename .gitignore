@@ -2,10 +2,11 @@
 /*
 
 # include sourcecode
+!lib/
 !src/
-/src/*.pro.user
-/src/*.pro.user.*
+!resources/
 !doc/
+!*.pro
 
 # include markdowns
 !LICENSE

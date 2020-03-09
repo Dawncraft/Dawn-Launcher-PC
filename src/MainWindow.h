@@ -4,13 +4,13 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
-#include "TitleBar.h"
-#include "NavigationBar.h"
-#include "HomePage.h"
-#include "StorePage.h"
-#include "NewsPage.h"
-#include "BBSPage.h"
-#include "ChatPage.h"
+#include "widgets/TitleBar.h"
+#include "widgets/NavigationBar.h"
+#include "ui/HomePage.h"
+#include "ui/StorePage.h"
+#include "ui/NewsPage.h"
+#include "ui/BBSPage.h"
+#include "ui/ChatPage.h"
 #include "TrayMenu.h"
 
 class MainWindow : public QMainWindow

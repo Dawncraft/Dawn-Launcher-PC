@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QStackedWidget>
-#include "SwitchBar.h"
+#include "../widgets/SwitchBar.h"
 #include "GamePage.h"
 
 class HomePage : public QWidget
