@@ -1,6 +1,6 @@
-#include "MainWindow.h"
+#include "DLMainWindow.h"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
+DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
 {
     resize(1000, 570);
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
@@ -56,32 +56,32 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     iconTray->show();
 }
 
-MainWindow::~MainWindow()
+DLMainWindow::~DLMainWindow()
 {
 
 }
 
-void MainWindow::setStackedWidgetIndex(int index)
+void DLMainWindow::setStackedWidgetIndex(int index)
 {
     stackedWidget->setCurrentIndex(index);
 }
 
-void MainWindow::onActivated(QSystemTrayIcon::ActivationReason reason)
+void DLMainWindow::onActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason)
     {
-    case QSystemTrayIcon::Trigger:
-    {
-        break;
-    }
-    case QSystemTrayIcon::DoubleClick:
-    {
-        showNormal();
-        raise();
-        activateWindow();
-        break;
-    }
-    default:
-        break;
+        case QSystemTrayIcon::Trigger:
+        {
+            break;
+        }
+        case QSystemTrayIcon::DoubleClick:
+        {
+            showNormal();
+            raise();
+            activateWindow();
+            break;
+        }
+        default:
+            break;
     }
 }

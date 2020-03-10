@@ -1,7 +1,8 @@
 SOURCES += $$PWD/main.cpp \
-    $$PWD/DawnSingleApplication.cpp \
-    $$PWD/MainWindow.cpp \
-    $$PWD/Setting.cpp \
+    $$PWD/DLConfiguration.cpp \
+    $$PWD/DLMainWindow.cpp \
+    $$PWD/DLSingleApplication.cpp \
+    $$PWD/DLSplashScreen.cpp \
     $$PWD/TrayMenu.cpp \
     $$PWD/ui/BBSPage.cpp \
     $$PWD/ui/ChatPage.cpp \
@@ -15,9 +16,10 @@ SOURCES += $$PWD/main.cpp \
 
 
 HEADERS += \
-    $$PWD/DawnSingleApplication.h \
-    $$PWD/MainWindow.h \
-    $$PWD/Setting.h \
+    $$PWD/DLConfiguration.h \
+    $$PWD/DLMainWindow.h \
+    $$PWD/DLSingleApplication.h \
+    $$PWD/DLSplashScreen.h \
     $$PWD/TrayMenu.h \
     $$PWD/ui/BBSPage.h \
     $$PWD/ui/ChatPage.h \

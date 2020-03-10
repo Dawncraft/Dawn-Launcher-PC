@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef DLMAINWINDOW_H
+#define DLMAINWINDOW_H
 
 #include <QMainWindow>
 #include <QStackedWidget>
@@ -13,13 +13,13 @@
 #include "ui/ChatPage.h"
 #include "TrayMenu.h"
 
-class MainWindow : public QMainWindow
+class DLMainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit DLMainWindow(QWidget *parent = 0);
+    ~DLMainWindow();
 
 private slots:
     void setStackedWidgetIndex(int index);
@@ -33,4 +33,4 @@ private:
     TrayMenu *menuTray;
 };
 
-#endif // MAINWINDOW_H
+#endif // DLMAINWINDOW_H
