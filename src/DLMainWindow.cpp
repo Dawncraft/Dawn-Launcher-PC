@@ -7,7 +7,7 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowIcon(QIcon(":/icon"));
     setWindowTitle("曙光游戏平台");
     setCentralWidget(new QWidget(parent));
-    setObjectName("mainWindow");
+    setObjectName("DLMainWindow");
 
     QVBoxLayout *layout = new QVBoxLayout(centralWidget());
     layout->setMargin(0);

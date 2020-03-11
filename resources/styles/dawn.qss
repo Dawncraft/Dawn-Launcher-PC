@@ -6,29 +6,103 @@
 * Date: 2017/4/30
 */
 
+/* 共有的 */
 QMainWindow {
     background-color: rgb(41, 128, 185);
 }
 
-QMainWindow#mainWindow {
-    background-image: url(:/images/background.png);
-    background-attachment: fixed;
+/* 标签 */
+QLabel {
+
 }
 
-TitleBar {
-    background-color: rgb(41, 128, 185);
+/* 文本 */
+QTextBrowser {
+
 }
 
-NavigationBar {
-    background-color: rgb(41, 128, 185);
+/* 进度条 */
+QProgressBar {
+    border: none;
+    color: white;
+    text-align: center;
+    background: rgb(68, 69, 73);
+}
+QProgressBar::chunk {
+    border: none;
+    background: rgb(0, 160, 230);
 }
 
-QToolTip{
-    border: 1px solid rgb(111, 156, 207);
-    background: white;
-    color: rgb(51, 51, 51);
+/* 按钮 */
+QPushButton {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 160, 230, 255);
+    border-style: outset;
+    border-width: 1px;
+    border-radius: 1px;
+    border-color: rgb(16, 33, 99);
+    padding: 2px;
+}
+QPushButton:hover {
+    color: rgba(0, 0, 0, 200);
+    background-color: rgba(200, 200, 200, 180);
+    border-color: rgba(255, 225, 255, 180);
+}
+QPushButton:pressed {
+    color: rgb(0, 0, 0);
+    background-color: rgba(100, 255, 100, 100);
+    border-style: inset;
+    border-color: rgba(235, 235, 235, 100);
 }
 
+/* 单选按钮 */
+QRadioButton {
+
+}
+
+/* 复选框 */
+QCheckBox {
+
+}
+
+/* 下拉列表 */
+QComboBox {
+
+}
+
+/* 微调框 */
+QSpinBox {
+
+}
+QDoubleSpinBox {
+
+}
+
+/* 滑块 */
+QSlider {
+
+}
+
+/* 单行文本输入框 */
+QLineEdit {
+
+}
+
+/* 文本输入框 */
+QPlainTextEdit {
+
+}
+
+/* 富文本输入框 */
+QTextEdit {
+
+}
+
+/* 列表 表格 */
+
+/* 容器 */
+
+/* 菜单 */
 QMenu {
     background: rgb(41, 128, 185);
     border: 1px solid rgb(44, 62, 80);
@@ -60,7 +134,17 @@ QMenu::indicator {
     height: 13px;
 }
 
+/* 工具栏和按钮 */
+QToolBox {
 
+}
+QToolButton {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+/* 状态栏 */
 QStatusBar {
         background: rgb(187, 212, 238);
         border: 1px solid rgb(111, 156, 207);
@@ -73,44 +157,17 @@ QStatusBar::item {
     border-right: 1px solid rgb(111, 156, 207);
 }
 
-QPushButton {
-    color:rgb(255, 255, 255);
-    background-color: rgba(0, 160, 230, 255);
-    border-style: outset;
-    border-width: 1px;
-    border-radius: 1px;
-    border-color: rgb(16, 33, 99);
-    padding: 2px;
+/* 提示框 */
+QToolTip {
+    border: 1px solid rgb(111, 156, 207);
+    background: white;
+    color: rgb(51, 51, 51);
 }
 
-QPushButton:hover {
-    color:rgba(0, 0, 0, 200);
-    background-color:rgba(200, 200, 200, 180);
-    border-color: rgba(255, 225, 255, 180);
-}
-
-QPushButton:pressed {
-    color: rgb(0, 0, 0);
-    background-color: rgba(100, 255, 100, 100);
-    border-style: inset;
-    border-color: rgba(235, 235, 235, 100);
-}
-
-QToolButton {
-    color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-}
-
-QProgressBar{
-    border: none;
-    color: white;
-    text-align: center;
-    background: rgb(68, 69, 73);
-}
-QProgressBar::chunk {
-    border: none;
-    background: rgb(0, 160, 230);
+/* 特例 */
+QMainWindow#DLMainWindow {
+    background-image: url(:/images/background.png);
+    background-attachment: fixed;
 }
 
 QLabel#titleLabel {
@@ -191,4 +248,10 @@ QPushButton#swiTabButton:checked {
     background-color: rgba(200, 200, 200, 50);
 }
 
+TitleBar {
+    background-color: rgb(41, 128, 185);
+}
 
+NavigationBar {
+    background-color: rgb(41, 128, 185);
+}
