@@ -19,7 +19,8 @@ SOURCES +=
 
 HEADERS +=
 
-FORMS +=
+FORMS += \
+    test.ui
 
 RESOURCES += resources/res.qrc
 

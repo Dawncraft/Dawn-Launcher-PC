@@ -2,25 +2,21 @@
 
 DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
 {
-    resize(1000, 570);
-    setWindowFlags(Qt::FramelessWindowHint | windowFlags());
-    setWindowIcon(QIcon(":/icon"));
+    setObjectName("mainWindow");
+    setWindowIcon(QIcon(":/icon.ico"));
     setWindowTitle("曙光游戏平台");
+    setWindowFlags(Qt::FramelessWindowHint | windowFlags());
+    resize(1000, 570);
     setCentralWidget(new QWidget(parent));
-    setObjectName("DLMainWindow");
 
     QVBoxLayout *layout = new QVBoxLayout(centralWidget());
     layout->setMargin(0);
     layout->setSpacing(0);
 
-    titleBar = new TitleBar(this);
-    installEventFilter(titleBar);
-    layout->addWidget(titleBar);
-
-    navigationBar = new NavigationBar(this);
-    navigationBar->setContentsMargins(5, 0, 5, 0);
-    layout->addWidget(navigationBar);
+    navigationBar = new DLNavigationBar(this);
+    installEventFilter(navigationBar);
     connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(setStackedWidgetIndex(int)));
+    layout->addWidget(navigationBar);
 
     stackedWidget = new QStackedWidget(this);
     stackedWidget->setContentsMargins(5, 0, 5, 0);

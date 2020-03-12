@@ -102,6 +102,64 @@ QTextEdit {
 
 /* 容器 */
 
+/* 标题栏 */
+TitleBar {
+    background-color: rgb(41, 128, 185);
+}
+
+/* 导航栏 */
+NavigationBar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+DLNavigationBar::tab {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(205, 205, 205);
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    padding: 0px;
+}
+DLNavigationBar::tab:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+DLNavigationBar::tab:selected {
+    font-size: 28px;
+    color: rgb(230, 230, 230);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* 工具栏和按钮 */
+QToolBox {
+
+}
+QToolButton {
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
+
+/* 状态栏 */
+QStatusBar {
+    background: rgb(187, 212, 238);
+    border: 1px solid rgb(111, 156, 207);
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+QStatusBar::item {
+    border: none;
+    border-right: 1px solid rgb(111, 156, 207);
+}
+
+/* 提示框 */
+QToolTip {
+    border: 1px solid rgb(111, 156, 207);
+    background: white;
+    color: rgb(51, 51, 51);
+}
+
 /* 菜单 */
 QMenu {
     background: rgb(41, 128, 185);
@@ -134,47 +192,17 @@ QMenu::indicator {
     height: 13px;
 }
 
-/* 工具栏和按钮 */
-QToolBox {
-
-}
-QToolButton {
-    color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-}
-
-/* 状态栏 */
-QStatusBar {
-        background: rgb(187, 212, 238);
-        border: 1px solid rgb(111, 156, 207);
-        border-left: none;
-        border-right: none;
-        border-bottom: none;
-}
-QStatusBar::item {
-    border: none;
-    border-right: 1px solid rgb(111, 156, 207);
-}
-
-/* 提示框 */
-QToolTip {
-    border: 1px solid rgb(111, 156, 207);
-    background: white;
-    color: rgb(51, 51, 51);
-}
-
 /* 特例 */
-QMainWindow#DLMainWindow {
+QMainWindow#mainWindow {
     background-image: url(:/images/background.png);
     background-attachment: fixed;
 }
 
-QLabel#titleLabel {
+QLabel#labelTitle {
     color: rgb(255, 255, 255);
 }
 
-QPushButton#minimizeButton {
+QPushButton#buttonMinimize {
     height: 30px;
     background-image: url(:/images/titlebar/min.png);
     background-color: rgba(0, 0, 0, 0);
@@ -182,17 +210,17 @@ QPushButton#minimizeButton {
     padding: 0px;
 }
 
-QPushButton#minimizeButton:hover {
+QPushButton#buttonMinimize:hover {
     background-image: url(:/images/titlebar/min_hover.png);
     background-color: rgba(79, 79, 79, 100);
 }
 
-QPushButton#minimizeButton:pressed {
+QPushButton#buttonMinimize:pressed {
     background-image: url(:/images/titlebar/min_pressed.png);
     background-color: rgba(142, 142, 142, 200);
 }
 
-QPushButton#closeButton {
+QPushButton#buttonClose {
     height: 30px;
     background-image: url(:/images/titlebar/close.png);
     background-color: rgba(0, 0, 0, 0);
@@ -200,34 +228,14 @@ QPushButton#closeButton {
     padding: 0px;
 }
 
-QPushButton#closeButton:hover {
+QPushButton#buttonClose:hover {
     background-image: url(:/images/titlebar/close_hover.png);
     background-color: rgb(232, 17, 35);
 }
 
-QPushButton#closeButton:pressed {
+QPushButton#buttonClose:pressed {
     background-image: url(:/images/titlebar/close_pressed.png);
     background-color: rgba(232, 17, 35, 150);
-}
-
-QPushButton#navTabButton {
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(205, 205, 205);
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    padding: 0px;
-}
-
-QPushButton#navTabButton:hover {
-    color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0);
-}
-
-QPushButton#navTabButton:checked {
-    font-size: 28px;
-    color: rgb(230, 230, 230);
-    background-color: rgba(0, 0, 0, 0);
 }
 
 QPushButton#swiTabButton {
@@ -246,12 +254,4 @@ QPushButton#swiTabButton:checked {
     font-size: 28px;
     color: rgb(50, 50, 50);
     background-color: rgba(200, 200, 200, 50);
-}
-
-TitleBar {
-    background-color: rgb(41, 128, 185);
-}
-
-NavigationBar {
-    background-color: rgb(41, 128, 185);
 }

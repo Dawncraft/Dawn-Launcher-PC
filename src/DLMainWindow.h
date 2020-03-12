@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
-#include "widgets/TitleBar.h"
-#include "widgets/NavigationBar.h"
+#include "widgets/DLTitleBar.h"
+#include "widgets/DLNavigationBar.h"
 #include "ui/HomePage.h"
 #include "ui/StorePage.h"
 #include "ui/NewsPage.h"
@@ -26,8 +26,8 @@ private slots:
     void onActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
-    TitleBar *titleBar;
-    NavigationBar *navigationBar;
+    DLTitleBar *titleBar;
+    DLNavigationBar *navigationBar;
     QStackedWidget *stackedWidget;
     QSystemTrayIcon *iconTray;
     TrayMenu *menuTray;
