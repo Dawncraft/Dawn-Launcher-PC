@@ -8,6 +8,7 @@
 
 #include "widgets/DLTitleBar.h"
 #include "widgets/DLNavigationBar.h"
+#include "widgets/DLBlurBackgroundWidget.h"
 #include "widgets/DLTrayMenu.h"
 #include "ui/HomePage.h"
 #include "ui/StorePage.h"
@@ -33,6 +34,7 @@ private slots:
 private:
     DLTitleBar *titleBar;
     DLNavigationBar *navigationBar;
+    DLBlurBackgroundWidget *backgroundWidget;
     QStackedWidget *stackedWidget;
     QSystemTrayIcon *trayIcon;
     DLTrayMenu *trayMenu;

@@ -104,7 +104,7 @@ QTextEdit {
 
 /* 标题栏 */
 TitleBar {
-    background-color: rgb(41, 128, 185);
+    background-color: rgba(41, 128, 185, 128);
 }
 
 /* 导航栏 */

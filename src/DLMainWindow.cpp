@@ -19,8 +19,13 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
     connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(setStackedWidgetIndex(int)));
     layoutMain->addWidget(navigationBar);
 
+    backgroundWidget = new DLBlurBackgroundWidget(this);
+    backgroundWidget->setFixedHeight(100);
+    layoutMain->addWidget(backgroundWidget);
+
     stackedWidget = new QStackedWidget(this);
     stackedWidget->setContentsMargins(0, 30, 0, 0);
+    backgroundWidget->setBackground(stackedWidget);
     layoutMain->addWidget(stackedWidget);
 
     HomePage *homePage = new HomePage(this);

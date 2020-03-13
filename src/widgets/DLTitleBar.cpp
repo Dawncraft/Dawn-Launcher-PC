@@ -43,6 +43,7 @@ DLTitleBar::DLTitleBar(bool isIndependent, QWidget *parent) : QWidget(parent)
     {
         m_buttonMinimize = new QPushButton(this);
         m_buttonMinimize->setObjectName("buttonMinimize");
+        m_buttonMinimize->setFocusPolicy(Qt::NoFocus);
         m_buttonMinimize->setToolTip("Minimize");
         connect(m_buttonMinimize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
         m_layoutTitlebar->addWidget(m_buttonMinimize, 0, Qt::AlignRight | Qt::AlignTop);
@@ -52,6 +53,7 @@ DLTitleBar::DLTitleBar(bool isIndependent, QWidget *parent) : QWidget(parent)
     {
         m_buttonMaximize = new QPushButton(this);
         m_buttonMaximize->setObjectName("buttonMaximize");
+        m_buttonMaximize->setFocusPolicy(Qt::NoFocus);
         m_buttonMaximize->setToolTip("Maximize");
         connect(m_buttonMaximize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
         m_layoutTitlebar->addWidget(m_buttonMaximize, 0, Qt::AlignRight | Qt::AlignTop);
@@ -61,6 +63,7 @@ DLTitleBar::DLTitleBar(bool isIndependent, QWidget *parent) : QWidget(parent)
     {
         m_buttonClose = new QPushButton(this);
         m_buttonClose->setObjectName("buttonClose");
+        m_buttonClose->setFocusPolicy(Qt::NoFocus);
         m_buttonClose->setToolTip("Close");
         connect(m_buttonClose, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
         m_layoutTitlebar->addWidget(m_buttonClose, 0, Qt::AlignRight | Qt::AlignTop);

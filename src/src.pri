@@ -9,6 +9,7 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/ui/HomePage.cpp \
     $$PWD/ui/NewsPage.cpp \
     $$PWD/ui/StorePage.cpp \
+    $$PWD/widgets/DLBlurBackgroundWidget.cpp \
     $$PWD/widgets/DLNavigationBar.cpp \
     $$PWD/widgets/DLTitleBar.cpp \
     $$PWD/widgets/SwitchBar.cpp \
@@ -26,6 +27,7 @@ HEADERS += \
     $$PWD/ui/HomePage.h \
     $$PWD/ui/NewsPage.h \
     $$PWD/ui/StorePage.h \
+    $$PWD/widgets/DLBlurBackgroundWidget.h \
     $$PWD/widgets/DLNavigationBar.h \
     $$PWD/widgets/DLTitleBar.h \
     $$PWD/widgets/SwitchBar.h \

@@ -1,5 +1,7 @@
 #include "DLNavigationBar.h"
 
+#include <QGraphicsBlurEffect>
+
 DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(false, parent)
 {
     setObjectName("navigationbar");
