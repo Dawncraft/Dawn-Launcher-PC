@@ -1,32 +1,31 @@
 #include "DLNavigationBar.h"
 
-DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(parent)
+DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(false, parent)
 {
     setObjectName("navigationbar");
-    setFixedHeight(70);
+    setFixedHeight(100);
 
-    QVBoxLayout *layoutNavBar = new QVBoxLayout(this);
-    layoutNavBar->setMargin(0);
-    layoutNavBar->setSpacing(0);
-    this->setLayout(layoutNavBar);
-
-    QWidget *widget1 = new QWidget(this);
-    widget1->setLayout(m_layoutTitlebar);
-    layoutNavBar->addWidget(widget1);
-
-    QWidget *widget2 = new QWidget(this);
-    QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(5, 0, 5, 0);
+    QVBoxLayout *layout = new QVBoxLayout(this);
+    layout->setMargin(0);
     layout->setSpacing(0);
-    widget2->setLayout(layout);
-    layoutNavBar->addWidget(widget2);
+
+    QWidget *widgetTitleBar = new QWidget(this);
+    widgetTitleBar->setLayout(m_layoutTitlebar);
+    layout->addWidget(widgetTitleBar);
+
+    QWidget *widgetNavBar = new QWidget(this);
+    QHBoxLayout *layoutNavBar = new QHBoxLayout(widgetNavBar);
+    layoutNavBar->setContentsMargins(5, 0, 5, 0);
+    layoutNavBar->setSpacing(0);
+    widgetNavBar->setLayout(layoutNavBar);
+    layout->addWidget(widgetNavBar);
 
     m_buttonBrand = new DLBrandButton(this);
     m_buttonBrand->setIcon(parent->windowIcon());
     m_buttonBrand->setText(parent->windowTitle());
     m_buttonBrand->setToolTip("Main Menu");
     connect(m_buttonBrand, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
-    layout->addWidget(m_buttonBrand);
+    layoutNavBar->addWidget(m_buttonBrand);
 
     QMenu *menuMain = new QMenu(this);
     menuMain->addAction("退出");
@@ -38,12 +37,13 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(parent)
     m_tabbarNavigation->addTab("新闻");
     m_tabbarNavigation->addTab("论坛");
     m_tabbarNavigation->addTab("好友");
-    layout->addWidget(m_tabbarNavigation);
+    connect(m_tabbarNavigation, SIGNAL(tabBarClicked(int)), this, SLOT(onTabClicked(int)));
+    layoutNavBar->addWidget(m_tabbarNavigation);
 
-    layout->addStretch();
+    layoutNavBar->addStretch();
 
     m_widgetUser = new DLUserWidget(this);
-    layout->addWidget(m_widgetUser);
+    layoutNavBar->addWidget(m_widgetUser);
 }
 
 DLNavigationBar::~DLNavigationBar()

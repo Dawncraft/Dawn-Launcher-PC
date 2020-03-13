@@ -14,7 +14,7 @@ class DLTitleBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit DLTitleBar(QWidget *parent = nullptr);
+    explicit DLTitleBar(bool isIndependent = true, QWidget *parent = nullptr);
     ~DLTitleBar();
 
 protected:

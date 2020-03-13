@@ -2,16 +2,18 @@
 #define DLMAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStackedLayout>
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
+
 #include "widgets/DLTitleBar.h"
 #include "widgets/DLNavigationBar.h"
+#include "widgets/DLTrayMenu.h"
 #include "ui/HomePage.h"
 #include "ui/StorePage.h"
 #include "ui/NewsPage.h"
 #include "ui/BBSPage.h"
 #include "ui/ChatPage.h"
-#include "TrayMenu.h"
 
 class DLMainWindow : public QMainWindow
 {
@@ -21,16 +23,19 @@ public:
     explicit DLMainWindow(QWidget *parent = 0);
     ~DLMainWindow();
 
+public slots:
+    void onShowWindow();
+
 private slots:
     void setStackedWidgetIndex(int index);
-    void onActivated(QSystemTrayIcon::ActivationReason reason);
+    void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
     DLTitleBar *titleBar;
     DLNavigationBar *navigationBar;
     QStackedWidget *stackedWidget;
-    QSystemTrayIcon *iconTray;
-    TrayMenu *menuTray;
+    QSystemTrayIcon *trayIcon;
+    DLTrayMenu *trayMenu;
 };
 
 #endif // DLMAINWINDOW_H

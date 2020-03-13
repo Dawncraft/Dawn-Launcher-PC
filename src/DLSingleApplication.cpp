@@ -3,7 +3,7 @@
 
 #define TIMEOUT (1000)
 
-DLSingleApplication::DLSingleApplication(int &argc, char *argv[], const QString key) : QApplication(argc, argv), m_uniqueKey(key), m_isRunning(false), m_configer("settings.ini"), m_window(nullptr)
+DLSingleApplication::DLSingleApplication(int &argc, char *argv[], const QString key) : QApplication(argc, argv), m_uniqueKey(key), m_isRunning(false), m_configer("settings.ini"), m_mainWindow(nullptr)
 {
     QLocalSocket localSocket;
     localSocket.connectToServer(m_uniqueKey);
@@ -40,9 +40,9 @@ void DLSingleApplication::initLocalServer()
     qInfo() << "Local server init";
 }
 
-void DLSingleApplication::setWindow(QWidget *window)
+void DLSingleApplication::setWindow(DLMainWindow *window)
 {
-    m_window = window;
+    m_mainWindow = window;
 }
 
 void DLSingleApplication::receiveConnection()
@@ -56,11 +56,9 @@ void DLSingleApplication::receiveConnection()
             // FIXME ???
             // return;
         }
-        if (m_window)
+        if (m_mainWindow)
         {
-            m_window->showNormal();
-            m_window->raise();
-            m_window->activateWindow();
+            m_mainWindow->onShowWindow();
         }
         localSocket->disconnectFromServer();
     }

@@ -6,23 +6,22 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowIcon(QIcon(":/icon.ico"));
     setWindowTitle("曙光游戏平台");
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
-    resize(1000, 570);
-    setCentralWidget(new QWidget(parent));
+    resize(1000, 570);// TODO 记忆尺寸
 
-    QVBoxLayout *layout = new QVBoxLayout(centralWidget());
-    layout->setMargin(0);
-    layout->setSpacing(0);
+    setCentralWidget(new QWidget(parent));
+    QStackedLayout *layoutMain = new QStackedLayout(centralWidget());
+    layoutMain->setMargin(0);
+    layoutMain->setSpacing(0);
+    layoutMain->setStackingMode(QStackedLayout::StackAll);
 
     navigationBar = new DLNavigationBar(this);
     installEventFilter(navigationBar);
     connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(setStackedWidgetIndex(int)));
-    layout->addWidget(navigationBar);
+    layoutMain->addWidget(navigationBar);
 
     stackedWidget = new QStackedWidget(this);
-    stackedWidget->setContentsMargins(5, 0, 5, 0);
-    stackedWidget->setFixedWidth(this->width());
-    stackedWidget->setFixedHeight(this->height() - 100);
-    layout->addWidget(stackedWidget);
+    stackedWidget->setContentsMargins(0, 30, 0, 0);
+    layoutMain->addWidget(stackedWidget);
 
     HomePage *homePage = new HomePage(this);
     stackedWidget->addWidget(homePage);
@@ -39,22 +38,27 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
     ChatPage *chatPage = new ChatPage(this);
     stackedWidget->addWidget(chatPage);
 
-    iconTray = new QSystemTrayIcon(this);
-    iconTray->setIcon(this->windowIcon());
-    iconTray->setToolTip(this->windowTitle());
-    connect(iconTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(onActivated(QSystemTrayIcon::ActivationReason)));
+    trayIcon = new QSystemTrayIcon(this);
+    trayIcon->setIcon(this->windowIcon());
+    trayIcon->setToolTip(this->windowTitle());
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(onTrayActivated(QSystemTrayIcon::ActivationReason)));
+    trayIcon->show();
 
-    menuTray = new TrayMenu(this);
-    menuTray->setObjectName("menuTray");
-    iconTray->setContextMenu(menuTray);
-    //connect(menuTray, SIGNAL(showWindow()), this, SLOT(showWindow()));
-
-    iconTray->show();
+    trayMenu = new DLTrayMenu(this);
+    trayMenu->setObjectName("menuTray");
+    connect(trayMenu, SIGNAL(showMainWindow()), this, SLOT(onShowWindow()));
+    trayIcon->setContextMenu(trayMenu);
 }
 
 DLMainWindow::~DLMainWindow()
 {
+}
 
+void DLMainWindow::onShowWindow()
+{
+    showNormal();
+    raise();
+    activateWindow();
 }
 
 void DLMainWindow::setStackedWidgetIndex(int index)
@@ -62,7 +66,7 @@ void DLMainWindow::setStackedWidgetIndex(int index)
     stackedWidget->setCurrentIndex(index);
 }
 
-void DLMainWindow::onActivated(QSystemTrayIcon::ActivationReason reason)
+void DLMainWindow::onTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
     switch(reason)
     {
@@ -72,12 +76,9 @@ void DLMainWindow::onActivated(QSystemTrayIcon::ActivationReason reason)
         }
         case QSystemTrayIcon::DoubleClick:
         {
-            showNormal();
-            raise();
-            activateWindow();
+            onShowWindow();
             break;
         }
-        default:
-            break;
+        default: break;
     }
 }

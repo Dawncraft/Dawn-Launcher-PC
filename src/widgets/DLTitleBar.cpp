@@ -5,16 +5,16 @@
 #include <qt_windows.h>
 #endif
 
-DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
+DLTitleBar::DLTitleBar(bool isIndependent, QWidget *parent) : QWidget(parent)
 {
     setObjectName("titlebar");
-    setFixedWidth(parent->width());
-    setFixedHeight(32);
+    setFixedHeight(30);
 
-    m_layoutTitlebar = new QHBoxLayout(this);
+    m_layoutTitlebar = new QHBoxLayout(nullptr);
     m_layoutTitlebar->setMargin(0);
     m_layoutTitlebar->setSpacing(0);
     m_layoutTitlebar->addSpacing(10);
+    if (isIndependent) setLayout(m_layoutTitlebar);
 
     if (!parent->windowIcon().isNull())
     {
@@ -69,6 +69,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
 
 DLTitleBar::~DLTitleBar()
 {
+    delete m_layoutTitlebar;
 }
 
 bool DLTitleBar::eventFilter(QObject *obj, QEvent *event)

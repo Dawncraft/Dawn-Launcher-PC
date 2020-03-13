@@ -6,6 +6,7 @@
 #include <QLocalServer>
 #include <QSharedMemory>
 
+#include "DLMainWindow.h"
 #include "DLConfiguration.h"
 
 class DLSingleApplication : public QApplication
@@ -18,7 +19,7 @@ public:
 
     bool isRunning();
     DLConfig& getConfig();
-    void setWindow(QWidget *window);
+    void setWindow(DLMainWindow *window);
 
 private slots:
     void receiveConnection();
@@ -27,7 +28,7 @@ private:
     QString m_uniqueKey;
     bool m_isRunning;
     DLConfig m_configer;
-    QWidget *m_window;
+    DLMainWindow *m_mainWindow;
     QSharedMemory m_sharedMemory;
     QLocalServer *m_localServer;
 

@@ -6,7 +6,7 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent)
     setFixedHeight(parent->height());
 
     QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(5, 30 + 70, 5, 5);
     layout->setSpacing(0);
 
     QString games[] = {"Minecraft", "Ourfirstclass"};
@@ -22,9 +22,9 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent)
 
     GamePage *gamePage = new GamePage(this, "Minecraft");
     stackedWidget->addWidget(gamePage);
+
 }
 
 HomePage::~HomePage()
 {
-
 }

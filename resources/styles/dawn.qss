@@ -108,11 +108,11 @@ TitleBar {
 }
 
 /* 导航栏 */
-NavigationBar {
+DLNavigationBar {
     background-color: rgba(0, 0, 0, 0);
 }
 
-DLNavigationBar::tab {
+DLNavTabBar::tab {
     font-size: 24px;
     font-weight: bold;
     color: rgb(205, 205, 205);
@@ -120,11 +120,11 @@ DLNavigationBar::tab {
     border-color: rgba(0, 0, 0, 0);
     padding: 0px;
 }
-DLNavigationBar::tab:hover {
+DLNavTabBar::tab:hover {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
 }
-DLNavigationBar::tab:selected {
+DLNavTabBar::tab:selected {
     font-size: 28px;
     color: rgb(230, 230, 230);
     background-color: rgba(0, 0, 0, 0);
