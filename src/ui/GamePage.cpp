@@ -7,6 +7,14 @@ GamePage::GamePage(QWidget *parent, QString name) : QWidget(parent)
     setFixedWidth(parent->width());
     setFixedHeight(parent->height());
 
+    labelGameBackground = new QLabel(this);
+    labelGameBackground->setContentsMargins(0, 10, 10, 0);
+    labelGameBackground->setAlignment(Qt::AlignTop | Qt::AlignRight);
+    /*
+    onGameBackgroundChanged(QPixmap(":/images/Minecraft/brand.png"));
+    stackedWidget->addWidget(labelGameBackground);
+    */
+
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
@@ -22,7 +30,7 @@ GamePage::GamePage(QWidget *parent, QString name) : QWidget(parent)
     layout->addWidget(labelBrand);
 
     // Add silder and others
-    layout->addSpacing(150);
+    layout->addSpacing(100);
 
     QHBoxLayout *bar = new QHBoxLayout();
     bar->setMargin(0);
@@ -67,4 +75,10 @@ GamePage::~GamePage()
 void GamePage::setGameName(QString name)
 {
 
+}
+
+void GamePage::onGameBackgroundChanged(const QPixmap &bg)
+{
+    labelGameBackground->setPixmap(bg);
+    labelGameBackground->setFixedSize(bg.size());
 }

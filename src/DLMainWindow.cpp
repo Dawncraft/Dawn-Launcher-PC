@@ -16,31 +16,33 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
 
     navigationBar = new DLNavigationBar(this);
     installEventFilter(navigationBar);
-    connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(setStackedWidgetIndex(int)));
+    connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(onStackedWidgetIndexChanged(int)));
     layoutMain->addWidget(navigationBar);
 
-    backgroundWidget = new DLBlurBackgroundWidget(this);
-    backgroundWidget->setFixedHeight(100);
-    layoutMain->addWidget(backgroundWidget);
-
     stackedWidget = new QStackedWidget(this);
-    stackedWidget->setContentsMargins(0, 30, 0, 0);
-    backgroundWidget->setBackground(stackedWidget);
+    stackedWidget->setObjectName("stackedWidgetMain");
+    stackedWidget->setContentsMargins(0, 0, 0, 0);
+    navigationBar->setBackgroundWidget(stackedWidget);
     layoutMain->addWidget(stackedWidget);
 
-    HomePage *homePage = new HomePage(this);
-    stackedWidget->addWidget(homePage);
+    DLPageHome *pageHome = new DLPageHome(this);
+    pageHome->setContentsMargins(0, 30, 0, 0);
+    stackedWidget->addWidget(pageHome);
 
     StorePage *storePage = new StorePage(this);
+    storePage->setContentsMargins(0, 30, 0, 0);
     stackedWidget->addWidget(storePage);
 
     NewsPage *newsPage = new NewsPage(this);
+    newsPage->setContentsMargins(0, 30, 0, 0);
     stackedWidget->addWidget(newsPage);
 
     BBSPage *bbsPage = new BBSPage(this);
+    bbsPage->setContentsMargins(0, 30, 0, 0);
     stackedWidget->addWidget(bbsPage);
 
     ChatPage *chatPage = new ChatPage(this);
+    chatPage->setContentsMargins(0, 30, 0, 0);
     stackedWidget->addWidget(chatPage);
 
     trayIcon = new QSystemTrayIcon(this);
@@ -66,7 +68,7 @@ void DLMainWindow::onShowWindow()
     activateWindow();
 }
 
-void DLMainWindow::setStackedWidgetIndex(int index)
+void DLMainWindow::onStackedWidgetIndexChanged(int index)
 {
     stackedWidget->setCurrentIndex(index);
 }

@@ -2,6 +2,7 @@
 #define NEWSPAGE_H
 
 #include <QWidget>
+#include <QVBoxLayout>
 #include <QLabel>
 
 class NewsPage : public QWidget

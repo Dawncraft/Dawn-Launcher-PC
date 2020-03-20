@@ -1,5 +1,5 @@
-#ifndef HOMEPAGE_H
-#define HOMEPAGE_H
+#ifndef DLPAGEHOME_H
+#define DLPAGEHOME_H
 
 #include <QWidget>
 #include <QHBoxLayout>
@@ -7,13 +7,13 @@
 #include "../widgets/SwitchBar.h"
 #include "GamePage.h"
 
-class HomePage : public QWidget
+class DLPageHome : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit HomePage(QWidget *parent = 0);
-    ~HomePage();
+    explicit DLPageHome(QWidget *parent = nullptr);
+    ~DLPageHome();
 
 signals:
 
@@ -24,4 +24,4 @@ private:
     QStackedWidget *stackedWidget;
 };
 
-#endif // HOMEPAGE_H
+#endif // DLPAGEHOME_H

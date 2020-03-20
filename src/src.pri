@@ -5,8 +5,8 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/DLSplashScreen.cpp \
     $$PWD/ui/BBSPage.cpp \
     $$PWD/ui/ChatPage.cpp \
+    $$PWD/ui/DLPageHome.cpp \
     $$PWD/ui/GamePage.cpp \
-    $$PWD/ui/HomePage.cpp \
     $$PWD/ui/NewsPage.cpp \
     $$PWD/ui/StorePage.cpp \
     $$PWD/widgets/DLBlurBackgroundWidget.cpp \
@@ -23,8 +23,8 @@ HEADERS += \
     $$PWD/DLSplashScreen.h \
     $$PWD/ui/BBSPage.h \
     $$PWD/ui/ChatPage.h \
+    $$PWD/ui/DLPageHome.h \
     $$PWD/ui/GamePage.h \
-    $$PWD/ui/HomePage.h \
     $$PWD/ui/NewsPage.h \
     $$PWD/ui/StorePage.h \
     $$PWD/widgets/DLBlurBackgroundWidget.h \

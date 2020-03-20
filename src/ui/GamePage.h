@@ -18,10 +18,12 @@ public:
 
 signals:
 
-public slots:
+private slots:
+    void onGameBackgroundChanged(const QPixmap &bg);
 
 private:
     QString gameName;
+    QLabel *labelGameBackground;
 };
 
 #endif // GAMEPAGE_H

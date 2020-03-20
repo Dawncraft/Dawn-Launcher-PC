@@ -8,9 +8,8 @@
 
 #include "widgets/DLTitleBar.h"
 #include "widgets/DLNavigationBar.h"
-#include "widgets/DLBlurBackgroundWidget.h"
 #include "widgets/DLTrayMenu.h"
-#include "ui/HomePage.h"
+#include "ui/DLPageHome.h"
 #include "ui/StorePage.h"
 #include "ui/NewsPage.h"
 #include "ui/BBSPage.h"
@@ -28,13 +27,12 @@ public slots:
     void onShowWindow();
 
 private slots:
-    void setStackedWidgetIndex(int index);
+    void onStackedWidgetIndexChanged(int index);
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
     DLTitleBar *titleBar;
     DLNavigationBar *navigationBar;
-    DLBlurBackgroundWidget *backgroundWidget;
     QStackedWidget *stackedWidget;
     QSystemTrayIcon *trayIcon;
     DLTrayMenu *trayMenu;

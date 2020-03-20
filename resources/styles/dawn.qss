@@ -8,7 +8,7 @@
 
 /* 共有的 */
 QMainWindow {
-    background-color: rgb(41, 128, 185);
+    background-color: rgb(230, 230, 230);
 }
 
 /* 标签 */
@@ -101,33 +101,31 @@ QTextEdit {
 /* 列表 表格 */
 
 /* 容器 */
-
-/* 标题栏 */
-TitleBar {
-    background-color: rgba(41, 128, 185, 128);
+QStackedWidget {
+    background: transparent;
 }
 
-/* 导航栏 */
-DLNavigationBar {
-    background-color: rgba(0, 0, 0, 0);
+/* 标题栏, 导航栏 */
+TitleBar, DLNavigationBar {
+    background-color: rgb(41, 128, 185);
 }
 
 DLNavTabBar::tab {
     font-size: 24px;
     font-weight: bold;
     color: rgb(205, 205, 205);
-    background-color: rgba(0, 0, 0, 0);
+    background: transparent;
     border-color: rgba(0, 0, 0, 0);
     padding: 0px;
 }
 DLNavTabBar::tab:hover {
     color: rgb(255, 255, 255);
-    background-color: rgba(0, 0, 0, 0);
+    background: transparent;
 }
 DLNavTabBar::tab:selected {
     font-size: 28px;
     color: rgb(230, 230, 230);
-    background-color: rgba(0, 0, 0, 0);
+    background: transparent;
 }
 
 /* 工具栏和按钮 */
@@ -194,8 +192,11 @@ QMenu::indicator {
 
 /* 特例 */
 QMainWindow#mainWindow {
-    background-image: url(:/images/background.png);
-    background-attachment: fixed;
+
+}
+
+QStackedWidget#stackedWidgetMain {
+    background-color: rgb(50, 150, 250);
 }
 
 QLabel#labelTitle {

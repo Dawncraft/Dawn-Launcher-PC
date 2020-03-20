@@ -1,27 +1,31 @@
 #include "DLBlurBackgroundWidget.h"
-#include <QPainter>
+
+#include <QGuiApplication>
+#include <QScreen>
 
 DLBlurBackgroundWidget::DLBlurBackgroundWidget(QWidget *parent) : QWidget(parent)
 {
-    auto blurEffect = new QGraphicsBlurEffect(this);
-    blurEffect->setBlurRadius(5);
+    m_painter = new QPainter(this);
+
+    QGraphicsBlurEffect* blurEffect = new QGraphicsBlurEffect(this);
+    blurEffect->setBlurRadius(4);
     setGraphicsEffect(blurEffect);
 }
 
 void DLBlurBackgroundWidget::setBackground(QWidget *widget)
 {
-    this->m_widgetBackground = widget;
+    m_widgetBackground = widget;
 }
 
 void DLBlurBackgroundWidget::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);
+    QWidget::paintEvent(event);
     if (m_widgetBackground != nullptr)
     {
-        QPixmap bg = m_widgetBackground->grab(geometry());
-        painter.begin(painter.device());
-        painter.drawPixmap(geometry(), bg);
-        painter.end();
+        QRect rect = QRect(pos(), size());
+        QPixmap bg = m_widgetBackground->grab(rect);
+        m_painter->begin(m_painter->device());
+        m_painter->drawPixmap(rect, bg);
+        m_painter->end();
     }
-    QWidget::paintEvent(event);
 }

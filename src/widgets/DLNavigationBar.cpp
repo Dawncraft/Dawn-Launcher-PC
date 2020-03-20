@@ -1,26 +1,23 @@
 #include "DLNavigationBar.h"
 
-#include <QGraphicsBlurEffect>
-
-DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(false, parent)
+DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(parent)
 {
     setObjectName("navigationbar");
     setFixedHeight(100);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
-    layout->setSpacing(0);
-
-    QWidget *widgetTitleBar = new QWidget(this);
-    widgetTitleBar->setLayout(m_layoutTitlebar);
-    layout->addWidget(widgetTitleBar);
+    QWidget *stackedWidget = new QWidget(this);
+    QStackedLayout *stackedLayout = new QStackedLayout(stackedWidget);
+    stackedLayout->setMargin(0);
+    stackedLayout->setSpacing(0);
+    stackedLayout->setStackingMode(QStackedLayout::StackAll);
+    m_layout->addWidget(stackedWidget);
 
     QWidget *widgetNavBar = new QWidget(this);
     QHBoxLayout *layoutNavBar = new QHBoxLayout(widgetNavBar);
     layoutNavBar->setContentsMargins(5, 0, 5, 0);
     layoutNavBar->setSpacing(0);
     widgetNavBar->setLayout(layoutNavBar);
-    layout->addWidget(widgetNavBar);
+    stackedLayout->addWidget(widgetNavBar);
 
     m_buttonBrand = new DLBrandButton(this);
     m_buttonBrand->setIcon(parent->windowIcon());
@@ -46,10 +43,19 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : DLTitleBar(false, parent)
 
     m_widgetUser = new DLUserWidget(this);
     layoutNavBar->addWidget(m_widgetUser);
+
+    m_backgroundWidget = new DLBlurBackgroundWidget(stackedWidget);
+    m_backgroundWidget->setFixedHeight(70);
+    stackedLayout->addWidget(m_backgroundWidget);
 }
 
 DLNavigationBar::~DLNavigationBar()
 {
+}
+
+void DLNavigationBar::setBackgroundWidget(QWidget *widget)
+{
+    m_backgroundWidget->setBackground(widget);
 }
 
 void DLNavigationBar::onClicked()

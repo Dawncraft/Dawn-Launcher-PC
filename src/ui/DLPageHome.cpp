@@ -1,12 +1,12 @@
-#include "HomePage.h"
+#include "DLPageHome.h"
 
-HomePage::HomePage(QWidget *parent) : QWidget(parent)
+DLPageHome::DLPageHome(QWidget *parent) : QWidget(parent)
 {
     setFixedWidth(parent->width());
     setFixedHeight(parent->height());
 
     QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setContentsMargins(5, 30 + 70, 5, 5);
+    layout->setContentsMargins(5, 70, 5, 5);
     layout->setSpacing(0);
 
     QString games[] = {"Minecraft", "Ourfirstclass"};
@@ -25,6 +25,6 @@ HomePage::HomePage(QWidget *parent) : QWidget(parent)
 
 }
 
-HomePage::~HomePage()
+DLPageHome::~DLPageHome()
 {
 }

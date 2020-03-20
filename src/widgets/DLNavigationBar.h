@@ -4,12 +4,14 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QStackedLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QToolButton>
 #include <QTabBar>
 #include <QMenu>
 
+#include "DLBlurBackgroundWidget.h"
 #include "DLTitleBar.h"
 
 class DLBrandButton : public QToolButton
@@ -52,6 +54,7 @@ class DLNavigationBar : public DLTitleBar
 public:
     explicit DLNavigationBar(QWidget *parent = nullptr);
     ~DLNavigationBar();
+    void setBackgroundWidget(QWidget *widget);
 
 signals:
     void changeStackedWidgetIndex(int index);
@@ -61,6 +64,7 @@ private slots:
     void onTabClicked(int index);
 
 private:
+    DLBlurBackgroundWidget *m_backgroundWidget;
     DLBrandButton *m_buttonBrand;
     DLNavTabBar *m_tabbarNavigation;
     DLUserWidget *m_widgetUser;

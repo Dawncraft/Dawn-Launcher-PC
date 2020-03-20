@@ -2,6 +2,7 @@
 #define DLBLURBACKGROUNDWIDGET_H
 
 #include <QWidget>
+#include <QPainter>
 #include <QGraphicsBlurEffect>
 
 class DLBlurBackgroundWidget : public QWidget
@@ -18,6 +19,7 @@ protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
+    QPainter *m_painter;
     QWidget *m_widgetBackground;
 
 };
