@@ -5,7 +5,7 @@
 !lib/
 !src/
 !resources/
-!doc/
+!design/
 !*.pro
 
 # include markdowns
