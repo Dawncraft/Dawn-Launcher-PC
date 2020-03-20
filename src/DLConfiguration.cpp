@@ -5,6 +5,10 @@ DLConfig::DLConfig(const QString name) : m_fileName(name), m_settings(name)
     m_settings.setIniCodec("UTF8");
     loadConfig();
     saveConfig();
+
+    // NOTE 测试用
+    m_games.push_back("Minecraft");
+    m_games.push_back("Ourfirstclass");
 }
 
 void DLConfig::loadConfig()

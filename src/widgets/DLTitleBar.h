@@ -17,10 +17,9 @@ public:
     explicit DLTitleBar(QWidget *parent = nullptr);
     ~DLTitleBar();
 
-protected:
+public:
     virtual bool eventFilter(QObject *obj, QEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
-    QVBoxLayout *m_layout;
 
 private slots:
     void onClicked();

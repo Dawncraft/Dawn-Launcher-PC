@@ -4,8 +4,8 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QStackedWidget>
-#include "../widgets/SwitchBar.h"
-#include "GamePage.h"
+#include "../widgets/DLGameBar.h"
+#include "DLPageGame.h"
 
 class DLPageHome : public QWidget
 {
@@ -17,11 +17,12 @@ public:
 
 signals:
 
-public slots:
+private slots:
+    void onBackgroundColorChanged(const QColor &color);
 
 private:
-    SwitchBar *switchBar;
-    QStackedWidget *stackedWidget;
+    DLGameBar *m_gameBar;
+    QStackedWidget *m_stackedWidget;
 };
 
 #endif // DLPAGEHOME_H

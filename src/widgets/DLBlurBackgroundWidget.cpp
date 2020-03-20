@@ -19,13 +19,13 @@ void DLBlurBackgroundWidget::setBackground(QWidget *widget)
 
 void DLBlurBackgroundWidget::paintEvent(QPaintEvent *event)
 {
-    QWidget::paintEvent(event);
     if (m_widgetBackground != nullptr)
     {
-        QRect rect = QRect(pos(), size());
-        QPixmap bg = m_widgetBackground->grab(rect);
+        // FIXME 自动获取控件位置
+        QPixmap bg = m_widgetBackground->grab(geometry());
         m_painter->begin(m_painter->device());
-        m_painter->drawPixmap(rect, bg);
+        m_painter->drawPixmap(geometry(), bg);
         m_painter->end();
     }
+    QWidget::paintEvent(event);
 }

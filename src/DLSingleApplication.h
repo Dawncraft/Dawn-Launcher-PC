@@ -18,7 +18,7 @@ public:
     void initLocalServer();
 
     bool isRunning();
-    DLConfig& getConfig();
+    DLConfig &getConfig();
     void setWindow(DLMainWindow *window);
 
 private slots:

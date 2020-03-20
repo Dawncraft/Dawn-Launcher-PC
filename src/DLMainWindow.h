@@ -6,8 +6,8 @@
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
 
-#include "widgets/DLTitleBar.h"
 #include "widgets/DLNavigationBar.h"
+#include "widgets/DLBlurBackgroundWidget.h"
 #include "widgets/DLTrayMenu.h"
 #include "ui/DLPageHome.h"
 #include "ui/StorePage.h"
@@ -31,11 +31,11 @@ private slots:
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
-    DLTitleBar *titleBar;
-    DLNavigationBar *navigationBar;
-    QStackedWidget *stackedWidget;
-    QSystemTrayIcon *trayIcon;
-    DLTrayMenu *trayMenu;
+    DLNavigationBar *m_navigationBar;
+    DLBlurBackgroundWidget *m_backgroundWidget;
+    QStackedWidget *m_stackedWidget;
+    QSystemTrayIcon *m_trayIcon;
+    DLTrayMenu *m_trayMenu;
 };
 
 #endif // DLMAINWINDOW_H

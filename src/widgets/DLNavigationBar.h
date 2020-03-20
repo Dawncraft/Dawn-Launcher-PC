@@ -4,23 +4,27 @@
 #include <QWidget>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QStackedLayout>
 #include <QLabel>
 #include <QPushButton>
 #include <QToolButton>
+#include <QProgressBar>
 #include <QTabBar>
 #include <QMenu>
 
 #include "DLBlurBackgroundWidget.h"
 #include "DLTitleBar.h"
 
-class DLBrandButton : public QToolButton
+class DLBrandWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DLBrandButton(QWidget *parent = nullptr);
-    ~DLBrandButton() = default;
+    explicit DLBrandWidget(QWidget *parent = nullptr);
+    ~DLBrandWidget() = default;
+
+private:
+    QToolButton *m_buttonBrand;
+    QProgressBar *m_progressBar;
 
 };
 
@@ -47,26 +51,28 @@ public:
 
 };
 
-class DLNavigationBar : public DLTitleBar
+class DLNavigationBar : public QWidget
 {
     Q_OBJECT
 
 public:
     explicit DLNavigationBar(QWidget *parent = nullptr);
     ~DLNavigationBar();
-    void setBackgroundWidget(QWidget *widget);
+
+public:
+    virtual bool eventFilter(QObject *obj, QEvent *event);
+    virtual void mousePressEvent(QMouseEvent *event);
 
 signals:
     void changeStackedWidgetIndex(int index);
 
 private slots:
-    void onClicked();
     void onTabClicked(int index);
 
 private:
-    DLBlurBackgroundWidget *m_backgroundWidget;
-    DLBrandButton *m_buttonBrand;
-    DLNavTabBar *m_tabbarNavigation;
+    DLTitleBar *m_titleBar;
+    DLBrandWidget *m_widgetBrand;
+    DLNavTabBar *m_tabBarNav;
     DLUserWidget *m_widgetUser;
 
 };

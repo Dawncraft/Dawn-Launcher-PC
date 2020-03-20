@@ -8,53 +8,57 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
     resize(1000, 570);// TODO 记忆尺寸
 
-    setCentralWidget(new QWidget(parent));
+    setCentralWidget(new QWidget(this));
     QStackedLayout *layoutMain = new QStackedLayout(centralWidget());
     layoutMain->setMargin(0);
     layoutMain->setSpacing(0);
     layoutMain->setStackingMode(QStackedLayout::StackAll);
 
-    navigationBar = new DLNavigationBar(this);
-    installEventFilter(navigationBar);
-    connect(navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(onStackedWidgetIndexChanged(int)));
-    layoutMain->addWidget(navigationBar);
+    m_navigationBar = new DLNavigationBar(this);
+    installEventFilter(m_navigationBar);
+    connect(m_navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(onStackedWidgetIndexChanged(int)));
+    layoutMain->addWidget(m_navigationBar);
 
-    stackedWidget = new QStackedWidget(this);
-    stackedWidget->setObjectName("stackedWidgetMain");
-    stackedWidget->setContentsMargins(0, 0, 0, 0);
-    navigationBar->setBackgroundWidget(stackedWidget);
-    layoutMain->addWidget(stackedWidget);
+    m_backgroundWidget = new DLBlurBackgroundWidget(this);
+    m_backgroundWidget->setFixedHeight(100);
+    layoutMain->addWidget(m_backgroundWidget);
+
+    m_stackedWidget = new QStackedWidget(this);
+    m_stackedWidget->setObjectName("stackedWidgetMain");
+    m_stackedWidget->setContentsMargins(0, 0, 0, 0);
+    m_backgroundWidget->setBackground(m_stackedWidget);
+    layoutMain->addWidget(m_stackedWidget);
 
     DLPageHome *pageHome = new DLPageHome(this);
-    pageHome->setContentsMargins(0, 30, 0, 0);
-    stackedWidget->addWidget(pageHome);
+    pageHome->setContentsMargins(0, 0, 0, 0);
+    m_stackedWidget->addWidget(pageHome);
 
-    StorePage *storePage = new StorePage(this);
-    storePage->setContentsMargins(0, 30, 0, 0);
-    stackedWidget->addWidget(storePage);
+    StorePage *pageStore = new StorePage(this);
+    pageStore->setContentsMargins(0, 0, 0, 0);
+    m_stackedWidget->addWidget(pageStore);
 
-    NewsPage *newsPage = new NewsPage(this);
-    newsPage->setContentsMargins(0, 30, 0, 0);
-    stackedWidget->addWidget(newsPage);
+    NewsPage *pageNews = new NewsPage(this);
+    pageNews->setContentsMargins(0, 0, 0, 0);
+    m_stackedWidget->addWidget(pageNews);
 
-    BBSPage *bbsPage = new BBSPage(this);
-    bbsPage->setContentsMargins(0, 30, 0, 0);
-    stackedWidget->addWidget(bbsPage);
+    BBSPage *pageForum = new BBSPage(this);
+    pageForum->setContentsMargins(0, 0, 0, 0);
+    m_stackedWidget->addWidget(pageForum);
 
-    ChatPage *chatPage = new ChatPage(this);
-    chatPage->setContentsMargins(0, 30, 0, 0);
-    stackedWidget->addWidget(chatPage);
+    ChatPage *pageChat = new ChatPage(this);
+    pageChat->setContentsMargins(0, 0, 0, 0);
+    m_stackedWidget->addWidget(pageChat);
 
-    trayIcon = new QSystemTrayIcon(this);
-    trayIcon->setIcon(this->windowIcon());
-    trayIcon->setToolTip(this->windowTitle());
-    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(onTrayActivated(QSystemTrayIcon::ActivationReason)));
-    trayIcon->show();
+    m_trayIcon = new QSystemTrayIcon(this);
+    m_trayIcon->setIcon(windowIcon());
+    m_trayIcon->setToolTip(windowTitle());
+    connect(m_trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(onTrayActivated(QSystemTrayIcon::ActivationReason)));
+    m_trayIcon->show();
 
-    trayMenu = new DLTrayMenu(this);
-    trayMenu->setObjectName("menuTray");
-    connect(trayMenu, SIGNAL(showMainWindow()), this, SLOT(onShowWindow()));
-    trayIcon->setContextMenu(trayMenu);
+    m_trayMenu = new DLTrayMenu(this);
+    m_trayMenu->setObjectName("menuTray");
+    connect(m_trayMenu, SIGNAL(showMainWindow()), this, SLOT(onShowWindow()));
+    m_trayIcon->setContextMenu(m_trayMenu);
 }
 
 DLMainWindow::~DLMainWindow()
@@ -70,12 +74,12 @@ void DLMainWindow::onShowWindow()
 
 void DLMainWindow::onStackedWidgetIndexChanged(int index)
 {
-    stackedWidget->setCurrentIndex(index);
+    m_stackedWidget->setCurrentIndex(index);
 }
 
 void DLMainWindow::onTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    switch(reason)
+    switch (reason)
     {
         case QSystemTrayIcon::Trigger:
         {

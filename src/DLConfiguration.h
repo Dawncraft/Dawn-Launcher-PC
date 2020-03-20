@@ -14,6 +14,7 @@ public:
     void set(const QString &category, const QString &key, const QVariant &value);
     QVariant get(const QString &category, const QString &key);
     QVariant get(const QString &category, const QString &key, const QVariant &defaultValue);
+    QVector<QString> m_games;
 
 private:
     QString m_fileName;

@@ -1,7 +1,6 @@
 #include "DLTitleBar.h"
 
 #ifdef Q_OS_WIN
-#pragma comment(lib, "user32.lib")
 #include <qt_windows.h>
 #endif
 
@@ -10,18 +9,12 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     setObjectName("titlebar");
     setFixedHeight(30);
 
-    m_layout = new QVBoxLayout(this);
-    m_layout->setMargin(0);
-    m_layout->setSpacing(0);
+    QHBoxLayout* layout = new QHBoxLayout(this);
+    layout->setMargin(0);
+    layout->setSpacing(0);
+    setLayout(layout);
 
-    QWidget *widgetTitleBar = new QWidget(this);
-    QHBoxLayout* layoutTitleBar = new QHBoxLayout(widgetTitleBar);
-    layoutTitleBar->setMargin(0);
-    layoutTitleBar->setSpacing(0);
-    widgetTitleBar->setLayout(layoutTitleBar);
-    m_layout->addWidget(widgetTitleBar);
-
-    layoutTitleBar->addSpacing(10);
+    layout->addSpacing(10);
 
     if (!parent->windowIcon().isNull())
     {
@@ -30,8 +23,8 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_labelIcon->setFixedSize(20, 20);
         m_labelIcon->setScaledContents(true);
         m_labelIcon->setPixmap(parent->windowIcon().pixmap(m_labelIcon->size()));
-        layoutTitleBar->addWidget(m_labelIcon, 0, Qt::AlignLeft);
-        layoutTitleBar->addSpacing(5);
+        layout->addWidget(m_labelIcon, 0, Qt::AlignLeft);
+        layout->addSpacing(5);
     }
 
     if (!parent->windowTitle().isNull())
@@ -40,11 +33,11 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         m_labelTitle->setText(parent->windowTitle());
-        layoutTitleBar->addWidget(m_labelTitle, 0, Qt::AlignLeft);
-        layoutTitleBar->addSpacing(5);
+        layout->addWidget(m_labelTitle, 0, Qt::AlignLeft);
+        layout->addSpacing(5);
     }
 
-    layoutTitleBar->addStretch();
+    layout->addStretch();
 
     if (parent->windowFlags() & Qt::WindowMinimizeButtonHint)
     {
@@ -53,7 +46,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_buttonMinimize->setFocusPolicy(Qt::NoFocus);
         m_buttonMinimize->setToolTip("Minimize");
         connect(m_buttonMinimize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
-        layoutTitleBar->addWidget(m_buttonMinimize, 0, Qt::AlignRight | Qt::AlignTop);
+        layout->addWidget(m_buttonMinimize, 0, Qt::AlignRight | Qt::AlignTop);
     }
 
     if (parent->windowFlags() & Qt::WindowMaximizeButtonHint)
@@ -63,7 +56,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_buttonMaximize->setFocusPolicy(Qt::NoFocus);
         m_buttonMaximize->setToolTip("Maximize");
         connect(m_buttonMaximize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
-        layoutTitleBar->addWidget(m_buttonMaximize, 0, Qt::AlignRight | Qt::AlignTop);
+        layout->addWidget(m_buttonMaximize, 0, Qt::AlignRight | Qt::AlignTop);
     }
 
     if (parent->windowFlags() & Qt::WindowCloseButtonHint)
@@ -73,7 +66,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_buttonClose->setFocusPolicy(Qt::NoFocus);
         m_buttonClose->setToolTip("Close");
         connect(m_buttonClose, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
-        layoutTitleBar->addWidget(m_buttonClose, 0, Qt::AlignRight | Qt::AlignTop);
+        layout->addWidget(m_buttonClose, 0, Qt::AlignRight | Qt::AlignTop);
     }
 }
 
@@ -83,7 +76,7 @@ DLTitleBar::~DLTitleBar()
 
 bool DLTitleBar::eventFilter(QObject *obj, QEvent *event)
 {
-    QWidget *widget = qobject_cast<QWidget *>(obj);
+    QWidget *widget = qobject_cast<QWidget*>(obj);
     if (widget)
     {
         switch (event->type())
@@ -133,6 +126,10 @@ void DLTitleBar::onClicked()
         if (button == m_buttonMinimize)
         {
             window->showMinimized();
+        }
+        else if (button == m_buttonMaximize)
+        {
+            window->showMaximized();
         }
         else if (button == m_buttonClose)
         {

@@ -20,7 +20,7 @@ bool DLSingleApplication::isRunning()
     return m_isRunning;
 }
 
-DLConfig& DLSingleApplication::getConfig()
+DLConfig &DLSingleApplication::getConfig()
 {
     return m_configer;
 }

@@ -105,9 +105,14 @@ QStackedWidget {
     background: transparent;
 }
 
-/* 标题栏, 导航栏 */
-TitleBar, DLNavigationBar {
+/* 标题栏 */
+TitleBar {
     background-color: rgb(41, 128, 185);
+}
+
+/* 导航栏 */
+DLNavigationBar {
+    background: transparent;
 }
 
 DLNavTabBar::tab {
@@ -126,6 +131,11 @@ DLNavTabBar::tab:selected {
     font-size: 28px;
     color: rgb(230, 230, 230);
     background: transparent;
+}
+
+/* 游戏栏 */
+DLGameBar {
+
 }
 
 /* 工具栏和按钮 */
@@ -193,10 +203,6 @@ QMenu::indicator {
 /* 特例 */
 QMainWindow#mainWindow {
 
-}
-
-QStackedWidget#stackedWidgetMain {
-    background-color: rgb(50, 150, 250);
 }
 
 QLabel#labelTitle {
