@@ -3,10 +3,8 @@
 #include <QGuiApplication>
 #include <QScreen>
 
-DLBlurBackgroundWidget::DLBlurBackgroundWidget(QWidget *parent) : QWidget(parent)
+DLBlurBackgroundWidget::DLBlurBackgroundWidget(QWidget *parent) : QWidget(parent), m_painter(new QPainter(this))
 {
-    m_painter = new QPainter(this);
-
     QGraphicsBlurEffect* blurEffect = new QGraphicsBlurEffect(this);
     blurEffect->setBlurRadius(4);
     setGraphicsEffect(blurEffect);

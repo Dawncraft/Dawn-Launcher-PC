@@ -62,9 +62,12 @@ public:
 public:
     virtual bool eventFilter(QObject *obj, QEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
+    virtual void mouseDoubleClickEvent(QMouseEvent *event);
+    virtual void mouseMoveEvent(QMouseEvent *event);
+    virtual void mouseReleaseEvent(QMouseEvent *event);
 
 signals:
-    void changeStackedWidgetIndex(int index);
+    void changePageIndex(int index);
 
 private slots:
     void onTabClicked(int index);

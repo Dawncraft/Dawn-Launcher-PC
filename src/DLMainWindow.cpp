@@ -4,27 +4,28 @@ DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
 {
     setObjectName("mainWindow");
     setWindowIcon(QIcon(":/icon.ico"));
-    setWindowTitle("曙光游戏平台");
+    setWindowTitle(tr("DGP"));
     setWindowFlags(Qt::FramelessWindowHint | windowFlags());
-    resize(1000, 570);// TODO 记忆尺寸
-
+    setMinimumSize(1000, 570);
     setCentralWidget(new QWidget(this));
-    QStackedLayout *layoutMain = new QStackedLayout(centralWidget());
+
+    QStackedLayout *layoutMain = new QStackedLayout(this);
+    layoutMain->setSizeConstraint(QLayout::SetMinimumSize);
     layoutMain->setMargin(0);
     layoutMain->setSpacing(0);
     layoutMain->setStackingMode(QStackedLayout::StackAll);
 
     m_navigationBar = new DLNavigationBar(this);
     installEventFilter(m_navigationBar);
-    connect(m_navigationBar, SIGNAL(changeStackedWidgetIndex(int)), this, SLOT(onStackedWidgetIndexChanged(int)));
+    connect(m_navigationBar, SIGNAL(changePageIndex(int)), this, SLOT(onPageIndexChanged(int)));
     layoutMain->addWidget(m_navigationBar);
 
     m_backgroundWidget = new DLBlurBackgroundWidget(this);
-    m_backgroundWidget->setFixedHeight(100);
+    m_backgroundWidget->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    m_backgroundWidget->setFixedHeight(m_navigationBar->height());
     layoutMain->addWidget(m_backgroundWidget);
 
     m_stackedWidget = new QStackedWidget(this);
-    m_stackedWidget->setObjectName("stackedWidgetMain");
     m_stackedWidget->setContentsMargins(0, 0, 0, 0);
     m_backgroundWidget->setBackground(m_stackedWidget);
     layoutMain->addWidget(m_stackedWidget);
@@ -72,7 +73,7 @@ void DLMainWindow::onShowWindow()
     activateWindow();
 }
 
-void DLMainWindow::onStackedWidgetIndexChanged(int index)
+void DLMainWindow::onPageIndexChanged(int index)
 {
     m_stackedWidget->setCurrentIndex(index);
 }

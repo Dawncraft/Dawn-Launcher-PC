@@ -27,7 +27,7 @@ public slots:
     void onShowWindow();
 
 private slots:
-    void onStackedWidgetIndexChanged(int index);
+    void onPageIndexChanged(int index);
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:

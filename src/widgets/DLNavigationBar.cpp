@@ -3,6 +3,8 @@
 DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
 {
     setObjectName("navigationBar");
+    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    setMinimumWidth(parent->width());
     setFixedHeight(100);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
@@ -11,20 +13,25 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
     setLayout(layout);
 
     m_titleBar = new DLTitleBar(this);
-    m_titleBar->setPalette(palette());
+    m_titleBar->setStyleSheet("DLTitleBar {background: transparent;}");
     layout->addWidget(m_titleBar);
 
     QWidget *widgetNavBar = new QWidget(this);
+    widgetNavBar->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    widgetNavBar->setMinimumWidth(parent->width());
+    widgetNavBar->setFixedHeight(height());
+    widgetNavBar->setStyleSheet("QWidget {background: transparent;}");
+
     QHBoxLayout *layoutNavBar = new QHBoxLayout(widgetNavBar);
     layoutNavBar->setContentsMargins(5, 0, 5, 0);
     layoutNavBar->setSpacing(0);
     widgetNavBar->setLayout(layoutNavBar);
     layout->addWidget(widgetNavBar);
 
-    m_widgetBrand = new DLBrandWidget(this);
+    m_widgetBrand = new DLBrandWidget(widgetNavBar);
     layoutNavBar->addWidget(m_widgetBrand);
 
-    m_tabBarNav = new DLNavTabBar(this);
+    m_tabBarNav = new DLNavTabBar(widgetNavBar);
     m_tabBarNav->addTab("主页");
     m_tabBarNav->addTab("广场");
     m_tabBarNav->addTab("新闻");
@@ -35,7 +42,7 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
 
     layoutNavBar->addStretch();
 
-    m_widgetUser = new DLUserWidget(this);
+    m_widgetUser = new DLUserWidget(widgetNavBar);
     layoutNavBar->addWidget(m_widgetUser);
 }
 
@@ -53,20 +60,33 @@ void DLNavigationBar::mousePressEvent(QMouseEvent *event)
     return m_titleBar->mousePressEvent(event);
 }
 
+void DLNavigationBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    return m_titleBar->mouseDoubleClickEvent(event);
+}
+
+void DLNavigationBar::mouseMoveEvent(QMouseEvent *event)
+{
+    return m_titleBar->mouseMoveEvent(event);
+}
+
+void DLNavigationBar::mouseReleaseEvent(QMouseEvent *event)
+{
+    return m_titleBar->mouseReleaseEvent(event);
+}
+
 void DLNavigationBar::onTabClicked(int index)
 {
-    QWidget *window = this->window();
-    if (window->isTopLevel())
+    if (window()->isTopLevel())
     {
-        emit changeStackedWidgetIndex(index);
+        emit changePageIndex(index);
     }
 }
 
 DLBrandWidget::DLBrandWidget(QWidget *parent)
 {
-    setObjectName("widgetBrand");
-    setFixedWidth(100);
-    setFixedHeight(parent->height() - 30);
+    setFixedSize(100, parent->height() - 30);
+    setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);

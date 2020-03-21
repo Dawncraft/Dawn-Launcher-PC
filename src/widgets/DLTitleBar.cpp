@@ -1,15 +1,14 @@
 #include "DLTitleBar.h"
 
-#ifdef Q_OS_WIN
-#include <qt_windows.h>
-#endif
-
 DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
 {
-    setObjectName("titlebar");
+    setObjectName("titleBar");
+    setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
+    setMinimumWidth(parent->width());
     setFixedHeight(30);
 
     QHBoxLayout* layout = new QHBoxLayout(this);
+    layout->setSizeConstraint(QLayout::SetMinimumSize);
     layout->setMargin(0);
     layout->setSpacing(0);
     setLayout(layout);
@@ -93,9 +92,11 @@ bool DLTitleBar::eventFilter(QObject *obj, QEvent *event)
             }
             case QEvent::WindowStateChange:
             case QEvent::Resize:
+            {
+                m_buttonMaximize->setChecked(window()->isMaximized());
                 return true;
-            default:
-                return QWidget::eventFilter(obj, event);
+            }
+            default: break;
         }
     }
     return QWidget::eventFilter(obj, event);
@@ -103,18 +104,33 @@ bool DLTitleBar::eventFilter(QObject *obj, QEvent *event)
 
 void DLTitleBar::mousePressEvent(QMouseEvent *event)
 {
-#ifdef Q_OS_WIN
-    if (ReleaseCapture())
+    if (event->button() == Qt::LeftButton)
     {
-        QWidget *window = this->window();
-        if (window->isTopLevel())
-        {
-           SendMessage(HWND(window->winId()), WM_SYSCOMMAND, SC_MOVE + HTCAPTION, 0);
-        }
+        m_isMousePressed = true;
+        m_pointClicked = event->globalPos();
     }
-    event->ignore();
-#else
-#endif
+}
+
+void DLTitleBar::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    m_buttonMaximize->click();
+}
+
+void DLTitleBar::mouseMoveEvent(QMouseEvent *event)
+{
+    if (m_isMousePressed)
+    {
+        window()->move(window()->pos() + event->globalPos() - m_pointClicked);
+        m_pointClicked = event->globalPos();
+    }
+}
+
+void DLTitleBar::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        m_isMousePressed = false;
+    }
 }
 
 void DLTitleBar::onClicked()
@@ -129,7 +145,7 @@ void DLTitleBar::onClicked()
         }
         else if (button == m_buttonMaximize)
         {
-            window->showMaximized();
+            window->isMaximized() ? window->showNormal() : window->showMaximized();
         }
         else if (button == m_buttonClose)
         {
