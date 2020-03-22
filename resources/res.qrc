@@ -6,15 +6,17 @@
         <file>styles/dawn.qss</file>
         <file>images/titlebar/close.png</file>
         <file>images/titlebar/close_hover.png</file>
-        <file>images/titlebar/close_pressed.png</file>
         <file>images/titlebar/min.png</file>
         <file>images/titlebar/min_hover.png</file>
-        <file>images/titlebar/min_pressed.png</file>
         <file>icon.ico</file>
         <file>images/Minecraft/icon.ico</file>
         <file>images/Ourfirstclass/icon.ico</file>
         <file>images/Ourfirstclass/icon2.ico</file>
         <file>images/Minecraft/brand.png</file>
         <file>images/Ourfirstclass/brand.png</file>
+        <file>images/titlebar/max.png</file>
+        <file>images/titlebar/max_hover.png</file>
+        <file>images/titlebar/restore.png</file>
+        <file>images/titlebar/restore_hover.png</file>
     </qresource>
 </RCC>

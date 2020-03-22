@@ -5,7 +5,7 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
     setObjectName("navigationBar");
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     setMinimumWidth(parent->width());
-    setFixedHeight(100);
+    setFixedHeight(20 + 80);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setMargin(0);
@@ -13,25 +13,17 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
     setLayout(layout);
 
     m_titleBar = new DLTitleBar(this);
-    m_titleBar->setStyleSheet("DLTitleBar {background: transparent;}");
     layout->addWidget(m_titleBar);
 
-    QWidget *widgetNavBar = new QWidget(this);
-    widgetNavBar->setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
-    widgetNavBar->setMinimumWidth(parent->width());
-    widgetNavBar->setFixedHeight(height());
-    widgetNavBar->setStyleSheet("QWidget {background: transparent;}");
-
-    QHBoxLayout *layoutNavBar = new QHBoxLayout(widgetNavBar);
+    QHBoxLayout *layoutNavBar = new QHBoxLayout();
     layoutNavBar->setContentsMargins(5, 0, 5, 0);
     layoutNavBar->setSpacing(0);
-    widgetNavBar->setLayout(layoutNavBar);
-    layout->addWidget(widgetNavBar);
+    layout->addLayout(layoutNavBar);
 
-    m_widgetBrand = new DLBrandWidget(widgetNavBar);
+    m_widgetBrand = new DLBrandWidget(this);
     layoutNavBar->addWidget(m_widgetBrand);
 
-    m_tabBarNav = new DLNavTabBar(widgetNavBar);
+    m_tabBarNav = new DLNavTabBar(this);
     m_tabBarNav->addTab("主页");
     m_tabBarNav->addTab("广场");
     m_tabBarNav->addTab("新闻");
@@ -42,7 +34,7 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
 
     layoutNavBar->addStretch();
 
-    m_widgetUser = new DLUserWidget(widgetNavBar);
+    m_widgetUser = new DLUserWidget(this);
     layoutNavBar->addWidget(m_widgetUser);
 }
 
@@ -96,7 +88,7 @@ DLBrandWidget::DLBrandWidget(QWidget *parent)
 
     m_buttonBrand = new QToolButton(this);
     m_buttonBrand->setFixedWidth(100);
-    m_buttonBrand->setFixedHeight(50);
+    m_buttonBrand->setFixedHeight(60);
     m_buttonBrand->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
     m_buttonBrand->setArrowType(Qt::DownArrow);
     m_buttonBrand->setPopupMode(QToolButton::InstantPopup);
@@ -115,12 +107,12 @@ DLBrandWidget::DLBrandWidget(QWidget *parent)
     m_progressBar->setFixedHeight(5);
     m_progressBar->setTextVisible(false);
     layout->addWidget(m_progressBar);
-    // TODO 更新进度条
+    // TODO 启动器更新进度条
 }
 
 DLNavTabBar::DLNavTabBar(QWidget *parent)
 {
-    setFixedHeight(parent->height() - 30);
+    setFixedHeight(parent->height() - 20);
     setDrawBase(false);
     setExpanding(false);
     setUsesScrollButtons(false);
@@ -130,13 +122,13 @@ DLNavTabBar::DLNavTabBar(QWidget *parent)
 
 QSize DLNavTabBar::tabSizeHint(int index) const
 {
-    return QSize(100, 70);
+    return QSize(100, 80);
 }
 
 DLUserWidget::DLUserWidget(QWidget *parent)
 {
     setFixedWidth(70);
-    setFixedHeight(parent->height() - 30);
+    setFixedHeight(parent->height() - 20);
     QLabel *labelUser = new QLabel(this);
     labelUser->setText("未登录");
 }

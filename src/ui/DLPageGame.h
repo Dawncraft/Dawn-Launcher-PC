@@ -19,6 +19,7 @@ public:
 signals:
 
 private slots:
+    void onBackgroundColorChanged(const QColor &color);
 
 private:
     QString gameName;

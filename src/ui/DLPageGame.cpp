@@ -3,6 +3,9 @@
 DLPageGame::DLPageGame(QWidget *parent, QString name) : QWidget(parent)
 {
     gameName = name;
+    // setAutoFillBackground(true);
+    // onBackgroundColorChanged(QColor(86, 96, 70));
+    setStyleSheet(".DLPageGame { background-color: rgb(86, 96, 70); }");
 
 //    labelLogo = new QLabel(this);
 //    labelLogo->setContentsMargins(0, 10, 10, 0);
@@ -17,9 +20,7 @@ DLPageGame::DLPageGame(QWidget *parent, QString name) : QWidget(parent)
     labelLogo = new QLabel(this);
     QPixmap logo = QPixmap(":/images/" + gameName + "/brand.png");
     labelLogo->setPixmap(logo);
-    labelLogo->setFixedWidth(logo.width());
-    labelLogo->setFixedHeight(logo.height());
-    labelLogo->setContentsMargins(20, 20, 10, 10);
+    labelLogo->setFixedSize(logo.size());
     labelLogo->setAlignment(Qt::AlignLeft | Qt::AlignTop);
     layout->addWidget(labelLogo);
 
@@ -78,4 +79,11 @@ DLPageGame::~DLPageGame()
 void DLPageGame::setGameName(QString name)
 {
 
+}
+
+void DLPageGame::onBackgroundColorChanged(const QColor &color)
+{
+    QPalette palette;
+    palette.setColor(QPalette::Background, color);
+    setPalette(palette);
 }

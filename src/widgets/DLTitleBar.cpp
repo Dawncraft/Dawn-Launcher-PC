@@ -5,10 +5,9 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     setObjectName("titleBar");
     setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
     setMinimumWidth(parent->width());
-    setFixedHeight(30);
+    setFixedHeight(20);
 
-    QHBoxLayout* layout = new QHBoxLayout(this);
-    layout->setSizeConstraint(QLayout::SetMinimumSize);
+    QHBoxLayout *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->setSpacing(0);
     setLayout(layout);
@@ -19,10 +18,10 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     {
         m_labelIcon = new QLabel(this);
         m_labelIcon->setObjectName("labelIcon");
-        m_labelIcon->setFixedSize(20, 20);
+        m_labelIcon->setFixedSize(16, 16);
         m_labelIcon->setScaledContents(true);
         m_labelIcon->setPixmap(parent->windowIcon().pixmap(m_labelIcon->size()));
-        layout->addWidget(m_labelIcon, 0, Qt::AlignLeft);
+        layout->addWidget(m_labelIcon, 0, Qt::AlignLeft | Qt::AlignVCenter);
         layout->addSpacing(5);
     }
 
@@ -32,7 +31,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
         m_labelTitle->setObjectName("labelTitle");
         m_labelTitle->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         m_labelTitle->setText(parent->windowTitle());
-        layout->addWidget(m_labelTitle, 0, Qt::AlignLeft);
+        layout->addWidget(m_labelTitle, 0, Qt::AlignLeft | Qt::AlignVCenter);
         layout->addSpacing(5);
     }
 
@@ -41,7 +40,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     if (parent->windowFlags() & Qt::WindowMinimizeButtonHint)
     {
         m_buttonMinimize = new QPushButton(this);
-        m_buttonMinimize->setObjectName("buttonMinimize");
+        m_buttonMinimize->setProperty("type", "min");
         m_buttonMinimize->setFocusPolicy(Qt::NoFocus);
         m_buttonMinimize->setToolTip("Minimize");
         connect(m_buttonMinimize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
@@ -51,7 +50,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     if (parent->windowFlags() & Qt::WindowMaximizeButtonHint)
     {
         m_buttonMaximize = new QPushButton(this);
-        m_buttonMaximize->setObjectName("buttonMaximize");
+        m_buttonMaximize->setProperty("type", "max");
         m_buttonMaximize->setFocusPolicy(Qt::NoFocus);
         m_buttonMaximize->setToolTip("Maximize");
         connect(m_buttonMaximize, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
@@ -61,7 +60,7 @@ DLTitleBar::DLTitleBar(QWidget *parent) : QWidget(parent)
     if (parent->windowFlags() & Qt::WindowCloseButtonHint)
     {
         m_buttonClose = new QPushButton(this);
-        m_buttonClose->setObjectName("buttonClose");
+        m_buttonClose->setProperty("type", "close");
         m_buttonClose->setFocusPolicy(Qt::NoFocus);
         m_buttonClose->setToolTip("Close");
         connect(m_buttonClose, SIGNAL(clicked(bool)), this, SLOT(onClicked()));
@@ -93,7 +92,9 @@ bool DLTitleBar::eventFilter(QObject *obj, QEvent *event)
             case QEvent::WindowStateChange:
             case QEvent::Resize:
             {
-                m_buttonMaximize->setChecked(window()->isMaximized());
+                // qDebug() << QString(window()->isMaximized());
+                // FIXME 还原按钮图标不改变
+                m_buttonMaximize->setProperty("type", window()->isMaximized() ? "restore" : "max");
                 return true;
             }
             default: break;

@@ -25,5 +25,5 @@ void DLBlurBackgroundWidget::paintEvent(QPaintEvent *event)
         m_painter->drawPixmap(geometry(), bg);
         m_painter->end();
     }
-    QWidget::paintEvent(event);
+    //QWidget::paintEvent(event);
 }

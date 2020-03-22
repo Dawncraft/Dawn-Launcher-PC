@@ -53,7 +53,7 @@ void DLSingleApplication::receiveConnection()
         if (!localSocket->waitForReadyRead(TIMEOUT))
         {
             qCritical() << localSocket->errorString();
-            // FIXME ???
+            // FIXME 本地服务器无法连接
             // return;
         }
         if (m_mainWindow)

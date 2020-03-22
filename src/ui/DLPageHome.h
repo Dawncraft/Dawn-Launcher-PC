@@ -18,7 +18,7 @@ public:
 signals:
 
 private slots:
-    void onBackgroundColorChanged(const QColor &color);
+
 
 private:
     DLGameBar *m_gameBar;

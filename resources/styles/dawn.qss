@@ -6,35 +6,30 @@
 * Date: 2017/4/30
 */
 
-/* 共有的 */
-QMainWindow {
-    background-color: rgb(230, 230, 230);
-}
-
 /* 标签 */
-QLabel {
+.QLabel {
 
 }
 
 /* 文本 */
-QTextBrowser {
+.QTextBrowser {
 
 }
 
 /* 进度条 */
-QProgressBar {
+.QProgressBar {
     border: none;
     color: white;
     text-align: center;
     background: rgb(68, 69, 73);
 }
-QProgressBar::chunk {
+.QProgressBar::chunk {
     border: none;
     background: rgb(0, 160, 230);
 }
 
 /* 按钮 */
-QPushButton {
+.QPushButton {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 160, 230, 255);
     border-style: outset;
@@ -43,12 +38,12 @@ QPushButton {
     border-color: rgb(16, 33, 99);
     padding: 2px;
 }
-QPushButton:hover {
+.QPushButton:hover {
     color: rgba(0, 0, 0, 200);
     background-color: rgba(200, 200, 200, 180);
     border-color: rgba(255, 225, 255, 180);
 }
-QPushButton:pressed {
+.QPushButton:pressed {
     color: rgb(0, 0, 0);
     background-color: rgba(100, 255, 100, 100);
     border-style: inset;
@@ -56,45 +51,42 @@ QPushButton:pressed {
 }
 
 /* 单选按钮 */
-QRadioButton {
+.QRadioButton {
 
 }
 
 /* 复选框 */
-QCheckBox {
+.QCheckBox {
 
 }
 
 /* 下拉列表 */
-QComboBox {
+.QComboBox {
 
 }
 
 /* 微调框 */
-QSpinBox {
-
-}
-QDoubleSpinBox {
+.QSpinBox, .QDoubleSpinBox {
 
 }
 
 /* 滑块 */
-QSlider {
+.QSlider {
 
 }
 
 /* 单行文本输入框 */
-QLineEdit {
+.QLineEdit {
 
 }
 
 /* 文本输入框 */
-QPlainTextEdit {
+.QPlainTextEdit {
 
 }
 
 /* 富文本输入框 */
-QTextEdit {
+.QTextEdit {
 
 }
 
@@ -106,16 +98,75 @@ QStackedWidget {
 }
 
 /* 标题栏 */
-TitleBar {
+.DLTitleBar {
     background-color: rgb(41, 128, 185);
 }
 
-/* 导航栏 */
-DLNavigationBar {
+.DLTitleBar > QLabel {
+    color: rgb(255, 255, 255);
+}
+
+.DLTitleBar > QPushButton {
+    width: 21px;
+    height: 20px;
+    background: transparent;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+.DLTitleBar > QPushButton:hover {
     background: transparent;
 }
 
-DLNavTabBar::tab {
+.DLTitleBar > QPushButton:pressed {
+    background: transparent;
+    margin-left: 1px;
+    margin-top: 1px;
+}
+
+.DLTitleBar > QPushButton[type="min"] {
+    background-image: url(:/images/titlebar/min.png);
+}
+
+.DLTitleBar > QPushButton[type="min"]:hover {
+    background-image: url(:/images/titlebar/min_hover.png);
+}
+
+.DLTitleBar > QPushButton[type="max"] {
+    background-image: url(:/images/titlebar/max.png);
+}
+
+.DLTitleBar > QPushButton[type="max"]:hover {
+    background-image: url(:/images/titlebar/max_hover.png);
+}
+
+.DLTitleBar > QPushButton[type="restore"] {
+    background-image: url(:/images/titlebar/restore.png);
+}
+
+.DLTitleBar > QPushButton[type="restore"]:hover {
+    background-image: url(:/images/titlebar/restore_hover.png);
+}
+
+.DLTitleBar > QPushButton[type="close"] {
+    background-image: url(:/images/titlebar/close.png);
+}
+
+.DLTitleBar > QPushButton[type="close"]:hover {
+    background-image: url(:/images/titlebar/close_hover.png);
+}
+
+/* 导航栏 */
+.DLNavigationBar {
+    background: transparent;
+}
+
+.DLNavigationBar > DLTitleBar {
+    background: transparent;
+}
+
+.DLNavTabBar::tab {
     font-size: 24px;
     font-weight: bold;
     color: rgb(205, 205, 205);
@@ -123,64 +174,64 @@ DLNavTabBar::tab {
     border-color: rgba(0, 0, 0, 0);
     padding: 0px;
 }
-DLNavTabBar::tab:hover {
+.DLNavTabBar::tab:hover {
     color: rgb(255, 255, 255);
     background: transparent;
 }
-DLNavTabBar::tab:selected {
+.DLNavTabBar::tab:selected {
     font-size: 28px;
     color: rgb(230, 230, 230);
     background: transparent;
 }
 
 /* 游戏栏 */
-DLGameBar {
+.DLGameBar {
 
 }
 
-QPushButton#swiTabButton {
+.QPushButton#swiTabButton {
     color: rgb(205, 205, 205);
     background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
     padding: 0px;
 }
 
-QPushButton#swiTabButton:hover {
+.QPushButton#swiTabButton:hover {
     color: rgb(150, 150, 150);
     background-color: rgba(200, 200, 200, 150);
 }
 
-QPushButton#swiTabButton:checked {
+.QPushButton#swiTabButton:checked {
     font-size: 28px;
     color: rgb(50, 50, 50);
     background-color: rgba(200, 200, 200, 50);
 }
 
 /* 工具栏和按钮 */
-QToolBox {
+.QToolBox {
 
 }
-QToolButton {
+.QToolButton {
     color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
     border: none;
 }
 
 /* 状态栏 */
-QStatusBar {
+.QStatusBar {
     background: rgb(187, 212, 238);
     border: 1px solid rgb(111, 156, 207);
     border-left: none;
     border-right: none;
     border-bottom: none;
 }
-QStatusBar::item {
+.QStatusBar::item {
     border: none;
     border-right: 1px solid rgb(111, 156, 207);
 }
 
 /* 提示框 */
-QToolTip {
+.QToolTip {
     border: 1px solid rgb(111, 156, 207);
     background: white;
     color: rgb(51, 51, 51);
@@ -218,47 +269,17 @@ QMenu::indicator {
     height: 13px;
 }
 
+/* 窗口 */
+QMainWindow {
+    background-color: rgb(230, 230, 230);
+}
+
 /* 特例 */
 QMainWindow#mainWindow {
 
 }
 
-QLabel#labelTitle {
-    color: rgb(255, 255, 255);
-}
-
-QPushButton#buttonMinimize {
-    height: 30px;
-    background-image: url(:/images/titlebar/min.png);
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    padding: 0px;
-}
-
-QPushButton#buttonMinimize:hover {
-    background-image: url(:/images/titlebar/min_hover.png);
-    background-color: rgba(79, 79, 79, 100);
-}
-
-QPushButton#buttonMinimize:pressed {
-    background-image: url(:/images/titlebar/min_pressed.png);
-    background-color: rgba(142, 142, 142, 200);
-}
-
-QPushButton#buttonClose {
-    height: 30px;
-    background-image: url(:/images/titlebar/close.png);
-    background-color: rgba(0, 0, 0, 0);
-    border-color: rgba(0, 0, 0, 0);
-    padding: 0px;
-}
-
-QPushButton#buttonClose:hover {
-    background-image: url(:/images/titlebar/close_hover.png);
-    background-color: rgb(232, 17, 35);
-}
-
-QPushButton#buttonClose:pressed {
-    background-image: url(:/images/titlebar/close_pressed.png);
-    background-color: rgba(232, 17, 35, 150);
+/* 测试 */
+* {
+    border: 1px solid #FF00FF;
 }
