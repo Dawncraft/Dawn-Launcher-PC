@@ -6,6 +6,7 @@
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
 
+#include "widgets/DLWindowFrameWidget.h"
 #include "widgets/DLNavigationBar.h"
 #include "widgets/DLBlurBackgroundWidget.h"
 #include "widgets/DLTrayMenu.h"
@@ -31,6 +32,7 @@ private slots:
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
+    DLWindowFrameWidget *m_frameWidget;
     DLNavigationBar *m_navigationBar;
     DLBlurBackgroundWidget *m_backgroundWidget;
     QStackedWidget *m_stackedWidget;

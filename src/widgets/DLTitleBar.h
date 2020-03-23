@@ -28,7 +28,7 @@ private slots:
     void onClicked();
 
 private:
-    bool m_isMousePressed;
+    bool m_mousePressed;
     QPoint m_pointClicked;
     QLabel *m_labelIcon;
     QLabel *m_labelTitle;

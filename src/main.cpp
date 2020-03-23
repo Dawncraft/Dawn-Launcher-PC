@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
         }
 
         DLMainWindow window;
+
         app.setWindow(&window);
         window.resize(1000, 570);// TODO 记忆尺寸
 

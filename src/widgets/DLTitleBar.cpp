@@ -107,7 +107,7 @@ void DLTitleBar::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
-        m_isMousePressed = true;
+        m_mousePressed = true;
         m_pointClicked = event->globalPos();
     }
 }
@@ -119,7 +119,7 @@ void DLTitleBar::mouseDoubleClickEvent(QMouseEvent *event)
 
 void DLTitleBar::mouseMoveEvent(QMouseEvent *event)
 {
-    if (m_isMousePressed)
+    if (m_mousePressed)
     {
         window()->move(window()->pos() + event->globalPos() - m_pointClicked);
         m_pointClicked = event->globalPos();
@@ -130,7 +130,7 @@ void DLTitleBar::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
-        m_isMousePressed = false;
+        m_mousePressed = false;
     }
 }
 
