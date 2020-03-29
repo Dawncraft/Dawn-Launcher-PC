@@ -17,7 +17,7 @@ void DLBlurBackgroundWidget::setBackground(QWidget *widget)
 
 void DLBlurBackgroundWidget::paintEvent(QPaintEvent *event)
 {
-    if (m_widgetBackground != nullptr)
+    if (false && m_widgetBackground != nullptr)
     {
         // FIXME 自动获取控件位置
         QPixmap bg = m_widgetBackground->grab(geometry());

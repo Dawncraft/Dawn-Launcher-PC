@@ -1,16 +1,20 @@
-#ifndef DLWINDOWFRAMEWIDGET_H
-#define DLWINDOWFRAMEWIDGET_H
+#ifndef DLWINDOW_H
+#define DLWINDOW_H
 
 #include <QWidget>
 
+#include "DLTitleBar.h"
+
 enum DLHitPosition { CENTRAL, TOP, BOTTOM, LEFT, RIGHT, LEFTTOP, LEFTBOTTOM, RIGHTTOP, RIGHTBOTTOM };
 
-class DLWindowFrameWidget : public QWidget
+class DLWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DLWindowFrameWidget(QWidget *parent = nullptr, int shadowSize = 10, bool canResize = true);
+    explicit DLWindow(QWidget *parent = nullptr, bool canResize = true, int shadowSize = 10, DLTitleFlags flag = NoTitle);
+    QWidget *rootWidget() const;
+    void setRootWidget(QWidget *widget);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -20,12 +24,15 @@ protected:
 
 private:
     DLHitPosition getHitPosition(const QPoint &pos);
-    int m_shadowSize;
+    DLTitleBar *m_titleBar;
+    QWidget *m_rootWidget;
     bool m_canResize;
+    int m_shadowSize;
     bool m_mousePressed;
     DLHitPosition m_hitPosition;
     QPoint m_oldPosition;
     QRect m_oldGeometry;
+
 };
 
-#endif // DLWINDOWFRAMEWIDGET_H
+#endif // DLWINDOW_H

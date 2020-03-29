@@ -1,36 +1,64 @@
-#include "DLWindowFrameWidget.h"
+#include "DLWindow.h"
 
 #include <QGraphicsBlurEffect>
 #include <QPainter>
-#include <QMouseEvent>
 
-#include <QDebug>
+#define DRAG_SIZE 10
 
-DLWindowFrameWidget::DLWindowFrameWidget(QWidget *parent, int shadowSize, bool canResize) : QWidget(parent), m_shadowSize(shadowSize), m_canResize(canResize)
+DLWindow::DLWindow(QWidget *parent, bool canResize, int shadowSize, DLTitleFlags flag) : QWidget(parent), m_canResize(canResize), m_shadowSize(shadowSize)
 {
-    QGraphicsDropShadowEffect *effectShadow = new QGraphicsDropShadowEffect(this);
-    effectShadow->setColor(Qt::gray);
-    effectShadow->setBlurRadius(shadowSize);
-    setGraphicsEffect(effectShadow);
+    setContentsMargins(DRAG_SIZE, DRAG_SIZE, DRAG_SIZE, DRAG_SIZE);
 
-    if (canResize)
+    if (canResize) setMouseTracking(true);
+
+    if (shadowSize > 0)
     {
-        setMouseTracking(true);
+        QGraphicsDropShadowEffect *effectShadow = new QGraphicsDropShadowEffect(this);
+        effectShadow->setColor(Qt::gray);
+        effectShadow->setBlurRadius(shadowSize);
+        setGraphicsEffect(effectShadow);
+    }
+
+    setRootWidget(this);
+    if (flag != NoTitle)
+    {
+        QVBoxLayout *rootLayout = new QVBoxLayout();
+        rootLayout->setMargin(0);
+        rootLayout->setSpacing(0);
+
+        m_titleBar = new DLTitleBar(this, flag);
+        installEventFilter(m_titleBar);
+        rootLayout->addWidget(m_titleBar);
+
+        QWidget *rootWidget = new QWidget(this);
+        rootLayout->addWidget(rootWidget);
+
+        setRootWidget(rootWidget);
     }
 }
 
-void DLWindowFrameWidget::mousePressEvent(QMouseEvent *event)
+QWidget *DLWindow::rootWidget() const
+{
+    return m_rootWidget;
+}
+
+void DLWindow::setRootWidget(QWidget *widget)
+{
+    m_rootWidget = widget;
+}
+
+void DLWindow::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
         m_mousePressed = true;
         m_oldPosition = event->globalPos();
-        m_oldGeometry = parentWidget()->geometry();
+        m_oldGeometry = geometry();
         m_hitPosition = getHitPosition(event->pos());
     }
 }
 
-void DLWindowFrameWidget::mouseMoveEvent(QMouseEvent *event)
+void DLWindow::mouseMoveEvent(QMouseEvent *event)
 {
     if (m_mousePressed)
     {
@@ -71,12 +99,10 @@ void DLWindowFrameWidget::mouseMoveEvent(QMouseEvent *event)
         default:
             break;
        }
-       parentWidget()->setGeometry(newGeometry);
+       setGeometry(newGeometry);
     }
     else
     {
-        qDebug() << getHitPosition(event->pos());
-
         switch (getHitPosition(event->pos()))
         {
         case TOP:
@@ -112,7 +138,7 @@ void DLWindowFrameWidget::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void DLWindowFrameWidget::mouseReleaseEvent(QMouseEvent *event)
+void DLWindow::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
@@ -121,24 +147,24 @@ void DLWindowFrameWidget::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-void DLWindowFrameWidget::paintEvent(QPaintEvent *event)
+void DLWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     QWidget::paintEvent(event);
 }
 
 /* From WizNote. License: GPLv3. Also see: https://github.com/WizTeam/WizQTClient */
-DLHitPosition DLWindowFrameWidget::getHitPosition(const QPoint &pos)
+DLHitPosition DLWindow::getHitPosition(const QPoint &pos)
 {
     if (!m_canResize) return CENTRAL;
 
-    if (pos.x() < m_shadowSize)
+    if (pos.x() < DRAG_SIZE)
     {
-        if (pos.y() < m_shadowSize)
+        if (pos.y() < DRAG_SIZE)
         {
             return LEFTTOP;
         }
-        else if (pos.y() >= height() - m_shadowSize)
+        else if (pos.y() >= height() - DRAG_SIZE)
         {
             return LEFTBOTTOM;
         }
@@ -147,13 +173,13 @@ DLHitPosition DLWindowFrameWidget::getHitPosition(const QPoint &pos)
             return LEFT;
         }
     }
-    else if (pos.x() > width() - m_shadowSize)
+    else if (pos.x() > width() - DRAG_SIZE)
     {
-        if (pos.y() < m_shadowSize)
+        if (pos.y() < DRAG_SIZE)
         {
             return RIGHTTOP;
         }
-        else if (pos.y() >= height() - m_shadowSize)
+        else if (pos.y() >= height() - DRAG_SIZE)
         {
             return RIGHTBOTTOM;
         }
@@ -162,11 +188,11 @@ DLHitPosition DLWindowFrameWidget::getHitPosition(const QPoint &pos)
             return RIGHT;
         }
     }
-    else if (pos.y() < m_shadowSize)
+    else if (pos.y() < DRAG_SIZE)
     {
         return TOP;
     }
-    else if (pos.y() > height() - m_shadowSize)
+    else if (pos.y() > height() - DRAG_SIZE)
     {
         return BOTTOM;
     }

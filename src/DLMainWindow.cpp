@@ -1,58 +1,55 @@
 #include "DLMainWindow.h"
 
-DLMainWindow::DLMainWindow(QWidget *parent) : QMainWindow(parent)
+DLMainWindow::DLMainWindow(QWidget *parent) : DLWindow(parent, true, 10, NoTitle)
 {
     setWindowIcon(QIcon(":/icon.ico"));
-    setWindowTitle("DGP");
+    setWindowTitle(tr("DGP"));
 
     setObjectName("mainWindow");
-    setAttribute(Qt::WA_TranslucentBackground); // 启用透明背景, 方便自定义边框阴影效果
+    //setAttribute(Qt::WA_TranslucentBackground); // 启用透明背景, 方便自定义边框阴影效果
     setWindowFlags(Qt::FramelessWindowHint); // 无边框和标题栏, 方便自定义边框和标题栏
     setContentsMargins(0, 0, 0, 0);
     setMinimumSize(1000, 570);
-
-    m_frameWidget = new DLWindowFrameWidget(this, 20);
-    setCentralWidget(m_frameWidget);
 
     QStackedLayout *layoutRoot = new QStackedLayout();
     layoutRoot->setStackingMode(QStackedLayout::StackAll);
     layoutRoot->setMargin(0);
     layoutRoot->setSpacing(0);
-    m_frameWidget->setLayout(layoutRoot);
+    rootWidget()->setLayout(layoutRoot);
 
-    m_navigationBar = new DLNavigationBar(m_frameWidget);
+    m_navigationBar = new DLNavigationBar(rootWidget());
     installEventFilter(m_navigationBar);
     connect(m_navigationBar, SIGNAL(changePageIndex(int)), this, SLOT(onPageIndexChanged(int)));
     layoutRoot->addWidget(m_navigationBar);
 
-    m_backgroundWidget = new DLBlurBackgroundWidget(m_frameWidget);
+    m_backgroundWidget = new DLBlurBackgroundWidget(rootWidget());
     m_backgroundWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_backgroundWidget->setMinimumWidth(minimumSize().width());
     m_backgroundWidget->setFixedHeight(m_navigationBar->height());
     layoutRoot->addWidget(m_backgroundWidget);
 
-    m_stackedWidget = new QStackedWidget(m_frameWidget);
+    m_stackedWidget = new QStackedWidget(rootWidget());
     m_stackedWidget->setContentsMargins(0, 0, 0, 0);
     m_backgroundWidget->setBackground(m_stackedWidget);
     layoutRoot->addWidget(m_stackedWidget);
 
-    DLPageHome *pageHome = new DLPageHome(m_frameWidget);
+    DLPageHome *pageHome = new DLPageHome(rootWidget());
     pageHome->setContentsMargins(0, 0, 0, 0);
     m_stackedWidget->addWidget(pageHome);
 
-    StorePage *pageStore = new StorePage(m_frameWidget);
+    StorePage *pageStore = new StorePage(rootWidget());
     pageStore->setContentsMargins(0, 0, 0, 0);
     m_stackedWidget->addWidget(pageStore);
 
-    NewsPage *pageNews = new NewsPage(m_frameWidget);
+    NewsPage *pageNews = new NewsPage(rootWidget());
     pageNews->setContentsMargins(0, 0, 0, 0);
     m_stackedWidget->addWidget(pageNews);
 
-    BBSPage *pageForum = new BBSPage(m_frameWidget);
+    BBSPage *pageForum = new BBSPage(rootWidget());
     pageForum->setContentsMargins(0, 0, 0, 0);
     m_stackedWidget->addWidget(pageForum);
 
-    ChatPage *pageChat = new ChatPage(m_frameWidget);
+    ChatPage *pageChat = new ChatPage(rootWidget());
     pageChat->setContentsMargins(0, 0, 0, 0);
     m_stackedWidget->addWidget(pageChat);
 

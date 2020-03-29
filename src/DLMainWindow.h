@@ -1,12 +1,11 @@
 #ifndef DLMAINWINDOW_H
 #define DLMAINWINDOW_H
 
-#include <QMainWindow>
 #include <QStackedLayout>
 #include <QStackedWidget>
 #include <QSystemTrayIcon>
 
-#include "widgets/DLWindowFrameWidget.h"
+#include "widgets/DLWindow.h"
 #include "widgets/DLNavigationBar.h"
 #include "widgets/DLBlurBackgroundWidget.h"
 #include "widgets/DLTrayMenu.h"
@@ -16,7 +15,7 @@
 #include "ui/BBSPage.h"
 #include "ui/ChatPage.h"
 
-class DLMainWindow : public QMainWindow
+class DLMainWindow : public DLWindow
 {
     Q_OBJECT
 
@@ -32,7 +31,6 @@ private slots:
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
-    DLWindowFrameWidget *m_frameWidget;
     DLNavigationBar *m_navigationBar;
     DLBlurBackgroundWidget *m_backgroundWidget;
     QStackedWidget *m_stackedWidget;

@@ -9,12 +9,28 @@
 #include <QMouseEvent>
 #include <QApplication>
 
+enum DLTitleFlag
+{
+    NoTitle = 0,
+    TitleIcon = 2,
+    TitleLabel = 4,
+    MinimizeButton = 8,
+    MaximizeButton = 16,
+    CloseButton = 32,
+
+    FixedWindowTitleButton = MinimizeButton | CloseButton,
+    NormalWindowTitleButton = FixedWindowTitleButton | MaximizeButton
+};
+
+Q_DECLARE_FLAGS(DLTitleFlags, DLTitleFlag)
+Q_DECLARE_OPERATORS_FOR_FLAGS(DLTitleFlags)
+
 class DLTitleBar : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DLTitleBar(QWidget *parent = nullptr);
+    explicit DLTitleBar(QWidget *parent = nullptr, DLTitleFlags flag = NoTitle);
     ~DLTitleBar();
 
 public:
@@ -24,17 +40,22 @@ public:
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
 
+public slots:
+    void setTitleIcon(const QPixmap &icon);
+    void setTitleLabel(const QString &label);
+
 private slots:
     void onClicked();
 
 private:
-    bool m_mousePressed;
-    QPoint m_pointClicked;
+    DLTitleFlags m_titleFlag;
     QLabel *m_labelIcon;
     QLabel *m_labelTitle;
     QPushButton *m_buttonMinimize;
     QPushButton *m_buttonMaximize;
     QPushButton *m_buttonClose;
+    bool m_mousePressed;
+    QPoint m_pointClicked;
 };
 
 #endif // DLTITLEBAR_H

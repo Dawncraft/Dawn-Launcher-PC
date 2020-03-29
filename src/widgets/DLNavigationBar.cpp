@@ -12,7 +12,8 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
     layout->setSpacing(0);
     setLayout(layout);
 
-    m_titleBar = new DLTitleBar(this);
+    m_titleBar = new DLTitleBar(this, TitleLabel | NormalWindowTitleButton);
+    m_titleBar->setTitleLabel(tr("曙光游戏平台"));
     layout->addWidget(m_titleBar);
 
     QHBoxLayout *layoutNavBar = new QHBoxLayout();
