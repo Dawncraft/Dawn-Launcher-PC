@@ -7,6 +7,7 @@
 
 DLWindow::DLWindow(QWidget *parent, bool canResize, int shadowSize, DLTitleFlags flag) : QWidget(parent), m_canResize(canResize), m_shadowSize(shadowSize)
 {
+    setWindowFlags(windowFlags() | Qt::FramelessWindowHint); // 无边框和标题栏, 方便自定义边框和标题栏
     setContentsMargins(DRAG_SIZE, DRAG_SIZE, DRAG_SIZE, DRAG_SIZE);
 
     if (canResize) setMouseTracking(true);
@@ -23,7 +24,7 @@ DLWindow::DLWindow(QWidget *parent, bool canResize, int shadowSize, DLTitleFlags
     if (flag != NoTitle)
     {
         QVBoxLayout *rootLayout = new QVBoxLayout();
-        rootLayout->setMargin(0);
+        rootLayout->setContentsMargins(0, 0, 0, 0);
         rootLayout->setSpacing(0);
 
         m_titleBar = new DLTitleBar(this, flag);
@@ -52,7 +53,7 @@ void DLWindow::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton)
     {
         m_mousePressed = true;
-        m_oldPosition = event->globalPos();
+        m_oldPosition = event->globalPosition();
         m_oldGeometry = geometry();
         m_hitPosition = getHitPosition(event->pos());
     }
@@ -64,7 +65,7 @@ void DLWindow::mouseMoveEvent(QMouseEvent *event)
     {
         if (m_hitPosition == CENTRAL) return;
 
-        QPoint pos = event->globalPos();
+        QPointF pos = event->globalPosition();
         int offsetX = pos.x() - m_oldPosition.x();
         int offsetY = pos.y() - m_oldPosition.y();
 

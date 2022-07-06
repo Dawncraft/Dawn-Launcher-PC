@@ -7,7 +7,7 @@ DLGameBar::DLGameBar(QWidget *parent) : QWidget(parent)
     setFixedWidth(100);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addSpacing(105);
 

@@ -13,7 +13,7 @@ DLPageGame::DLPageGame(QWidget *parent, QString name) : QWidget(parent)
 //    labelLogo->setPixmap(QPixmap(":/images/Minecraft/brand.png"));
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0 , 0, 0);
     layout->setSpacing(0);
     setLayout(layout);
 
@@ -27,7 +27,7 @@ DLPageGame::DLPageGame(QWidget *parent, QString name) : QWidget(parent)
     layout->addStretch();
 
     QHBoxLayout *bar = new QHBoxLayout();
-    bar->setMargin(0);
+    bar->setContentsMargins(0, 0, 0, 0);
     bar->setSpacing(0);
     layout->addLayout(bar);
 
@@ -84,6 +84,6 @@ void DLPageGame::setGameName(QString name)
 void DLPageGame::onBackgroundColorChanged(const QColor &color)
 {
     QPalette palette;
-    palette.setColor(QPalette::Background, color);
+    palette.setColor(QPalette::All, QPalette::Window, color);
     setPalette(palette);
 }

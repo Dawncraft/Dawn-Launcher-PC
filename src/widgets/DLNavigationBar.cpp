@@ -8,7 +8,7 @@ DLNavigationBar::DLNavigationBar(QWidget *parent) : QWidget(parent)
     setFixedHeight(20 + 80);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     setLayout(layout);
 
@@ -70,10 +70,7 @@ void DLNavigationBar::mouseReleaseEvent(QMouseEvent *event)
 
 void DLNavigationBar::onTabClicked(int index)
 {
-    if (window()->isTopLevel())
-    {
-        emit changePageIndex(index);
-    }
+    emit changePageIndex(index);
 }
 
 DLBrandWidget::DLBrandWidget(QWidget *parent)
@@ -82,7 +79,7 @@ DLBrandWidget::DLBrandWidget(QWidget *parent)
     setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
     QVBoxLayout *layout = new QVBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->setAlignment(Qt::AlignHCenter);
     setLayout(layout);

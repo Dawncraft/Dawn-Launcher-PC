@@ -6,21 +6,20 @@
 
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-CONFIG += C++11
+CONFIG += c++17
 TEMPLATE = app
 
 TARGET = Dawn-Launcher
 
-# Make your code fail to compile if you use deprecated APIs.
-# disables all the APIs deprecated before Qt 6.0.0.
-DEFINES += QT_DEPRECATED_WARNINGS #QT_DISABLE_DEPRECATED_BEFORE=0x060000
+# You can make your code fail to compile if it uses deprecated APIs.
+# In order to do so, uncomment the following line.
+#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES +=
 
 HEADERS +=
 
-FORMS += \
-    test.ui
+FORMS += test.ui
 
 RESOURCES += resources/res.qrc
 
@@ -34,3 +33,8 @@ QMAKE_TARGET_PRODUCT = "Dawn Game Platform"
 QMAKE_TARGET_DESCRIPTION = "Dawn Game Platform"
 QMAKE_TARGET_COMPANY = "Dawncraft Studio"
 QMAKE_TARGET_COPYRIGHT = "Copyright 2002-2020 Dawncraft Studio."
+
+# Default rules for deployment.
+qnx: target.path = /tmp/$${TARGET}/bin
+else: unix:!android: target.path = /opt/$${TARGET}/bin
+!isEmpty(target.path): INSTALLS += target

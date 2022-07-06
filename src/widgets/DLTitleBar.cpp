@@ -10,7 +10,7 @@ DLTitleBar::DLTitleBar(QWidget *parent, DLTitleFlags flag) : QWidget(parent), m_
     setFixedHeight(20);
 
     QHBoxLayout *layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     setLayout(layout);
 

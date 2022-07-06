@@ -2,7 +2,6 @@
 
 DLConfig::DLConfig(const QString name) : m_fileName(name), m_settings(name)
 {
-    m_settings.setIniCodec("UTF8");
     loadConfig();
     saveConfig();
 

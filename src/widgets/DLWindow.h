@@ -30,7 +30,7 @@ private:
     int m_shadowSize;
     bool m_mousePressed;
     DLHitPosition m_hitPosition;
-    QPoint m_oldPosition;
+    QPointF m_oldPosition;
     QRect m_oldGeometry;
 
 };

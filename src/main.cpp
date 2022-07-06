@@ -1,3 +1,4 @@
+#include <QFile>
 #include <QElapsedTimer>
 #include "DLSingleApplication.h"
 #include "DLSplashScreen.h"

@@ -6,14 +6,13 @@ DLMainWindow::DLMainWindow(QWidget *parent) : DLWindow(parent, true, 10, NoTitle
     setWindowTitle(tr("DGP"));
 
     setObjectName("mainWindow");
-    //setAttribute(Qt::WA_TranslucentBackground); // 启用透明背景, 方便自定义边框阴影效果
-    setWindowFlags(Qt::FramelessWindowHint); // 无边框和标题栏, 方便自定义边框和标题栏
-    setContentsMargins(0, 0, 0, 0);
+    setAttribute(Qt::WA_TranslucentBackground); // 启用透明背景, 方便自定义边框阴影效果
+    setAttribute(Qt::WA_NoSystemBackground, false);
     setMinimumSize(1000, 570);
 
     QStackedLayout *layoutRoot = new QStackedLayout();
     layoutRoot->setStackingMode(QStackedLayout::StackAll);
-    layoutRoot->setMargin(0);
+    layoutRoot->setContentsMargins(0, 0, 0, 0);
     layoutRoot->setSpacing(0);
     rootWidget()->setLayout(layoutRoot);
 
